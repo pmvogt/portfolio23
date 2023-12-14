@@ -7,6 +7,7 @@ export default function AppFooter() {
   return (
     <Flex
       px="4"
+      pb="4"
       shrink="0"
       justify="between"
       align="center"

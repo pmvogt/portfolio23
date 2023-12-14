@@ -21,7 +21,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body className="min-h-screen">
+      <body>
         <Theme
           accentColor="gold"
           grayColor="sand"

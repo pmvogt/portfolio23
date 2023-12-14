@@ -5,11 +5,10 @@ import { Flex, Text } from '@radix-ui/themes';
 export default function AppHeader() {
   return (
     <Flex
-      px="4"
-      pt="4"
+      p="4"
       align="baseline"
       justify="between"
-      shrink="0"
+      width="100%"
       style={{ fontFamily: 'var(--font-geist-sans)' }}
     >
       <Flex direction="column">
