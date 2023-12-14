@@ -1,44 +1,49 @@
-import { Box, Container, Flex, Text, Code } from "@radix-ui/themes";
+import { Box, Container, Flex, Text } from '@radix-ui/themes';
+import AppHeader from './components/appheader';
+import AppFooter from './components/appfooter';
+import SplineViewer from './components/splineviewer';
 
 export default function Home() {
-	return (
-		<main className="flex min-h-screen p-8 flex-col items-center justify-between">
-			<Flex px="4" pt="4" align="baseline" justify="between">
-				<Flex direction="column">
-					<Text style={{ color: "var(--accent-a12)" }} size="3" weight="bold">
-						Peter Vogt
-					</Text>
-					<Text style={{ color: "var(--neutral-11)" }} size="2">
-						Software Designer
-					</Text>
-				</Flex>
-				<Flex>
-					<code>Marfa, TX</code>
-				</Flex>
-			</Flex>
-			<Container>
-				<Flex
-					align="center"
-					width="100%"
-					height="9"
-					p="2"
-					style={{
-						backgroundColor: "var(--black-a8)",
-						borderTopLeftRadius: 4,
-						borderTopRightRadius: 4,
-					}}
-				>
-					<Code>test</Code>
-				</Flex>
-				<Box
-					width="100%"
-					height="9"
-					mt="0"
-					style={{ backgroundColor: "var(--gold-7)" }}
-				>
-					<Text>test</Text>
-				</Box>
-			</Container>
-		</main>
-	);
+  return (
+    <main className="flex h-screen p-8 flex-col items-center content-between justify-start">
+      <AppHeader />
+      <Container
+        grow="1"
+        height="100%"
+        style={{
+          overflow: 'auto',
+        }}
+      >
+        <Flex
+          align="center"
+          width="100%"
+          mt="8"
+          p="4"
+          style={{
+            backgroundColor: 'var(--black-a8)',
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+          }}
+        >
+          <Text
+            size="2"
+            trim="both"
+            style={{ fontFamily: 'var(--font-geist-mono)' }}
+          >
+            effects/gradient
+          </Text>
+        </Flex>
+        <Box
+          width="100%"
+          mt="0"
+          style={{
+            backgroundColor: 'var(--gold-7)',
+          }}
+        >
+          <SplineViewer />
+        </Box>
+      </Container>
+      <AppFooter />
+    </main>
+  );
 }
