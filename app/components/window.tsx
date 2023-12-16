@@ -1,21 +1,31 @@
 'use client';
 
-import { Flex, Box, Text } from '@radix-ui/themes';
+import { Flex, Text } from '@radix-ui/themes';
 import SplineViewer from './splineviewer';
 
 export default function Window() {
   return (
-    <>
+    <Flex
+      align="center"
+      direction="column"
+      content="center"
+      py="9"
+      width="100%"
+      height="100%"
+    >
       <Flex
-        align="center"
+        py="5"
+        pl="4"
         width="100%"
-        mt="8"
-        p="5"
-        grow="1"
         style={{
-          backgroundColor: 'var(--black-a8)',
+          backgroundColor: 'var(--neutral-a12)',
           borderTopLeftRadius: 4,
           borderTopRightRadius: 4,
+          borderWidth: 1,
+          borderStyle: 'solid',
+          borderBottomColor: 'transparent',
+          borderColor: 'var(--neutral-a11)',
+          color: 'var(--neutral-11)',
         }}
       >
         <Text
@@ -26,15 +36,21 @@ export default function Window() {
           effects/gradient
         </Text>
       </Flex>
-      <Box
+      <Flex
         width="100%"
         mt="0"
         style={{
           backgroundColor: 'var(--gold-7)',
+          borderWidth: 1,
+          borderBottomLeftRadius: 2,
+          borderBottomRightRadius: 2,
+          borderStyle: 'solid',
+          borderColor: 'var(--gold-7)',
         }}
       >
-        <SplineViewer />
-      </Box>
-    </>
+        test
+        {/* <SplineViewer /> */}
+      </Flex>
+    </Flex>
   );
 }

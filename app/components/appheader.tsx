@@ -28,7 +28,12 @@ export default function AppHeader() {
           Software Designer
         </Text>
       </Flex>
-      <Flex>
+      <Flex
+        display={{
+          initial: 'none',
+          lg: 'flex',
+        }}
+      >
         <SewingPinIcon width="16" height="16" />
         <Text
           style={{

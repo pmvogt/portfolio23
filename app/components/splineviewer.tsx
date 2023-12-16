@@ -1,8 +1,14 @@
 'use client';
-import Spline from '@splinetool/react-spline';
+import Script from 'next/script';
 
 export default function SplineViewer() {
   return (
-    <Spline scene="https://prod.spline.design/G-LnugR06BCfEBmc/scene.splinecode" />
+    <>
+      <Script
+        type="module"
+        src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
+      />
+      <spline-viewer url="https://prod.spline.design/5kR2TTnDGFEtO6UW/scene.splinecode" />
+    </>
   );
 }

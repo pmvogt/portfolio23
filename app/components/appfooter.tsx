@@ -15,7 +15,7 @@ export default function AppFooter() {
     >
       <Badge size="2" highContrast variant="surface" color="gray">
         <FigmaLogoIcon width="16" height="16" />
-        100 Dupes
+        100 duplicates
       </Badge>
       <ColorBar />
     </Flex>

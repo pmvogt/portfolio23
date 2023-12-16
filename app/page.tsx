@@ -6,21 +6,21 @@ import Window from './components/window';
 export default function Home() {
   return (
     <main>
-      <Flex shrink="0">
+      <Flex shrink={{ initial: '1', md: '0' }}>
         <AppHeader />
       </Flex>
-
-      <Container
-        py="9"
-        grow="1"
-        style={{
-          overflow: 'auto',
+      <Flex height="100%">
+        <Container width="100%">
+          <Window />
+        </Container>
+      </Flex>
+      <Flex
+        display={{
+          initial: 'none',
+          md: 'flex',
         }}
+        shrink={{ initial: '1', md: '0' }}
       >
-        <Window />
-      </Container>
-
-      <Flex shrink="0">
         <AppFooter />
       </Flex>
     </main>

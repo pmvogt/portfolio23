@@ -3,12 +3,12 @@
 import { Box, Flex } from '@radix-ui/themes';
 
 const colors = [
-  'sand-5',
-  'sand-6',
-  'sand-7',
-  'gold-5',
-  'gold-6',
-  'gold-7',
+  'gray-5',
+  'gray-6',
+  'gray-7',
+  'accent-7',
+  'accent-8',
+  'accent-9',
 ];
 
 export default function ColorBar() {
