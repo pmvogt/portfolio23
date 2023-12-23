@@ -10,8 +10,13 @@ export default function Home() {
         <AppHeader />
       </Flex>
 
-      <Window />
-
+      <Flex
+        height="100%"
+        pb={{ initial: '0', md: '9' }}
+        px={{ initial: '0', md: '4' }}
+      >
+        <Window />
+      </Flex>
       <Flex
         display={{
           initial: 'none',

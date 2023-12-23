@@ -29,7 +29,7 @@ export default function Window() {
       align="center"
       direction="column"
       content="center"
-      py="9"
+      pt="9"
       grow="1"
       width="100%"
     >
@@ -72,20 +72,7 @@ export default function Window() {
           </Select.Content>
         </Select.Root>
       </Flex>
-      <Flex
-        width="100%"
-        height="100%"
-        mt="0"
-        grow="1"
-        style={{
-          backgroundColor: 'var(--gold-7)',
-          borderWidth: 1,
-          borderBottomLeftRadius: 2,
-          borderBottomRightRadius: 2,
-          borderStyle: 'solid',
-          borderColor: 'var(--gold-7)',
-        }}
-      >
+      <Flex width="100%" height="100%" mt="0" grow="1">
         {renderVisualization()}
       </Flex>
     </Flex>
