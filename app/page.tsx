@@ -6,20 +6,17 @@ import Window from './components/window';
 export default function Home() {
   return (
     <main>
-      <Flex shrink={{ initial: '1', md: '0' }}>
+      <Flex>
         <AppHeader />
       </Flex>
-      <Flex height="100%">
-        <Container width="100%">
-          <Window />
-        </Container>
-      </Flex>
+
+      <Window />
+
       <Flex
         display={{
           initial: 'none',
           md: 'flex',
         }}
-        shrink={{ initial: '1', md: '0' }}
       >
         <AppFooter />
       </Flex>
