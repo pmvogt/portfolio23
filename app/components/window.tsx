@@ -1,7 +1,6 @@
 'use client';
-import Image from 'next/image';
 import { useState } from 'react';
-import { Flex, Box, Select, Text } from '@radix-ui/themes';
+import { Flex, Select } from '@radix-ui/themes';
 import { FigmaLogoIcon } from '@radix-ui/react-icons';
 
 export default function Window() {
@@ -60,10 +59,9 @@ export default function Window() {
           <Select.Content style={{ fontFamily: 'monospace' }}>
             <Select.Group>
               <Select.Label>
-                <FigmaLogoIcon width="12" height="12" mr="2" />
-                Figma
+                <FigmaLogoIcon width="12" height="12" /> Figma
               </Select.Label>
-              <Select.Item value="figma1">gradient</Select.Item>
+              <Select.Item value="figma1">Toolbar</Select.Item>
               <Select.Item value="figma2">watercolor</Select.Item>
               <Select.Item value="figma3">bubbles</Select.Item>
             </Select.Group>

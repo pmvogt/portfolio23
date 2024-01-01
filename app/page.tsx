@@ -1,4 +1,4 @@
-import { Container, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 import AppHeader from './components/appheader';
 import AppFooter from './components/appfooter';
 import Window from './components/window';
@@ -17,12 +17,7 @@ export default function Home() {
       >
         <Window />
       </Flex>
-      <Flex
-        display={{
-          initial: 'none',
-          md: 'flex',
-        }}
-      >
+      <Flex>
         <AppFooter />
       </Flex>
     </main>

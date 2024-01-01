@@ -1,7 +1,8 @@
 'use client';
 import { FigmaLogoIcon } from '@radix-ui/react-icons';
-import { Badge, Flex } from '@radix-ui/themes';
+import { Badge, Box, Flex } from '@radix-ui/themes';
 import ColorBar from './colorbar';
+import NavToolbar from './navtoolbar';
 
 export default function AppFooter() {
   return (
@@ -9,15 +10,32 @@ export default function AppFooter() {
       px="4"
       pb="4"
       shrink="0"
-      justify="between"
+      justify={{ initial: 'center', md: 'between' }}
       align="center"
       width="100%"
     >
-      <Badge size="2" highContrast variant="surface" color="gray">
-        <FigmaLogoIcon width="16" height="16" />
-        100 duplicates
-      </Badge>
-      <ColorBar />
+      <Flex
+        display={{
+          initial: 'none',
+          md: 'flex',
+        }}
+      >
+        <Badge size="2" highContrast variant="surface" color="gray">
+          <FigmaLogoIcon width="16" height="16" />
+          100 duplicates
+        </Badge>
+      </Flex>
+
+      <NavToolbar />
+
+      <Flex
+        display={{
+          initial: 'none',
+          md: 'flex',
+        }}
+      >
+        <ColorBar />
+      </Flex>
     </Flex>
   );
 }
