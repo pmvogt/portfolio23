@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { Flex, Box, Select, Text } from '@radix-ui/themes';
+import { FigmaLogoIcon } from '@radix-ui/react-icons';
 
 export default function Window() {
   type Visualizations = {
@@ -58,7 +59,10 @@ export default function Window() {
           </Select.Trigger>
           <Select.Content style={{ fontFamily: 'monospace' }}>
             <Select.Group>
-              <Select.Label>Effects</Select.Label>
+              <Select.Label>
+                <FigmaLogoIcon width="12" height="12" mr="2" />
+                Figma
+              </Select.Label>
               <Select.Item value="figma1">gradient</Select.Item>
               <Select.Item value="figma2">watercolor</Select.Item>
               <Select.Item value="figma3">bubbles</Select.Item>
