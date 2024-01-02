@@ -53,14 +53,17 @@ export default function NavToolbar() {
     {
       name: 'Figma',
       icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)' }} />,
-      action: { type: 'link', href: '/' },
+      action: {
+        type: 'link',
+        href: 'https://figma.com/@vogtbot9000',
+      },
     },
     {
       name: 'X',
       icon: (
         <TwitterLogoIcon style={{ color: 'var(--accent-a11)' }} />
       ),
-      action: { type: 'link', href: '/' },
+      action: { type: 'link', href: 'https://www.x.com/vogtbot' },
     },
     {
       name: 'ThemeToggle',
@@ -96,7 +99,7 @@ export default function NavToolbar() {
             key={i}
             mouseX={mouseX}
             icon={link.icon}
-            action={link.action}
+            action={link.action as { type: 'link'; href: string }}
           ></NavLink>
         ))}
       </Flex>

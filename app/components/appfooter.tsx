@@ -25,6 +25,7 @@ export default function AppFooter() {
           100 duplicates
         </Badge>
       </Flex>
+
       <NavToolbar />
 
       <Flex
