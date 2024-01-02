@@ -1,7 +1,6 @@
 "use client";
 
 import { Flex, Text } from "@radix-ui/themes";
-import SplineViewer from "./splineviewer";
 
 export default function Window() {
 	return (
