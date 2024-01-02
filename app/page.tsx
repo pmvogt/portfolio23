@@ -5,21 +5,12 @@ import Window from './components/window';
 
 export default function Home() {
   return (
-    <main>
-      <Flex>
-        <AppHeader />
-      </Flex>
-
-      <Flex
-        height="100%"
-        pb={{ initial: '0', md: '9' }}
-        px={{ initial: '0', md: '4' }}
-      >
-        <Window />
-      </Flex>
-      <Flex>
-        <AppFooter />
-      </Flex>
-    </main>
+    <Flex
+      height="100%"
+      pb={{ initial: '0', md: '9' }}
+      px={{ initial: '0', md: '4' }}
+    >
+      <Window />
+    </Flex>
   );
 }

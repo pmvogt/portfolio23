@@ -35,37 +35,41 @@ export default function NavToolbar() {
   const links = [
     {
       name: 'Home',
-      icon: <BackpackIcon />,
-      action: { type: 'link', href: '/404' },
-    },
-    {
-      name: 'Craft',
-      icon: <ReaderIcon />,
+      icon: <BackpackIcon style={{ color: 'var(--accent-a11)' }} />,
       action: { type: 'link', href: '/' },
     },
     {
+      name: 'Craft',
+      icon: <ReaderIcon style={{ color: 'var(--accent-a11)' }} />,
+      action: { type: 'link', href: '/404' },
+    },
+    {
       name: 'Contact',
-      icon: <EnvelopeClosedIcon />,
+      icon: (
+        <EnvelopeClosedIcon style={{ color: 'var(--accent-a11)' }} />
+      ),
       action: { type: 'link', href: '/' },
     },
     {
       name: 'Figma',
-      icon: <FigmaLogoIcon />,
+      icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)' }} />,
       action: { type: 'link', href: '/' },
     },
     {
       name: 'X',
-      icon: <TwitterLogoIcon />,
+      icon: (
+        <TwitterLogoIcon style={{ color: 'var(--accent-a11)' }} />
+      ),
       action: { type: 'link', href: '/' },
     },
     {
       name: 'ThemeToggle',
-      icon: <MoonIcon />,
+      icon: <MoonIcon style={{ color: 'var(--accent-a11)' }} />,
       action: { type: 'link', href: '/' },
     },
     {
       name: 'SoundToggle',
-      icon: <SpeakerOffIcon />,
+      icon: <SpeakerOffIcon style={{ color: 'var(--accent-a11)' }} />,
       action: { type: 'link', href: '/' },
     },
   ];
@@ -80,7 +84,7 @@ export default function NavToolbar() {
         style={{
           background: `var(--color-surface)`,
           borderWidth: 1,
-          borderColor: `var(--accent-a7)`,
+          borderColor: `var(--gold-a7)`,
           borderStyle: 'solid',
           borderRadius: 9999,
         }}
@@ -104,14 +108,16 @@ function NavLink({ icon, mouseX, action, ...props }: NavLinkProps) {
   const renderContent = () => {
     if (action.type === 'button') {
       return (
-        <IconButton {...props}>
-          <span>{icon}</span>
+        <IconButton size="4" {...props}>
+          <span className="w-full h-full">{icon}</span>
         </IconButton>
       );
     } else if (action.type === 'link') {
       return (
         <Link href={action.href}>
-          <div {...props}>{icon}</div>
+          <div className="w-full h-full" {...props}>
+            {icon}
+          </div>
         </Link>
       );
     }
@@ -143,7 +149,7 @@ function NavLink({ icon, mouseX, action, ...props }: NavLinkProps) {
       ref={ref}
       style={{
         width,
-        borderColor: 'var(--accent-7)',
+        borderColor: 'var(--gold-a7)',
         borderWidth: 1,
       }}
     >

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import { Theme } from '@radix-ui/themes';
+import { Theme, Flex } from '@radix-ui/themes';
+import AppHeader from './components/appheader';
+import AppFooter from './components/appfooter';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
@@ -28,7 +30,17 @@ export default function RootLayout({
           scaling="100%"
           appearance="dark"
         >
-          {children}
+          <main>
+            <Flex>
+              <AppHeader />
+            </Flex>
+
+            {children}
+
+            <Flex>
+              <AppFooter />
+            </Flex>
+          </main>
         </Theme>
       </body>
     </html>
