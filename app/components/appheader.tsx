@@ -6,7 +6,7 @@ export default function AppHeader() {
   return (
     <Flex
       p="4"
-      align="baseline"
+      align="end"
       justify="between"
       width="100%"
       style={{ fontFamily: 'var(--font-geist-sans)' }}
@@ -28,12 +28,7 @@ export default function AppHeader() {
           Software Designer
         </Text>
       </Flex>
-      <Flex
-        display={{
-          initial: 'none',
-          lg: 'flex',
-        }}
-      >
+      <Flex>
         <SewingPinIcon width="16" height="16" />
         <Text
           style={{

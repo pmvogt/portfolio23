@@ -1,20 +1,41 @@
 "use client";
-
-import { Flex, Text } from "@radix-ui/themes";
+import { useState } from "react";
+import { Flex, Select } from "@radix-ui/themes";
+import { FigmaLogoIcon } from "@radix-ui/react-icons";
 
 export default function Window() {
+	type Visualizations = {
+		[key: string]: string;
+	};
+
+	const visualizations: Visualizations = {
+		figma1:
+			"https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gYofN0G97wuyX0ijtYiiu%2Ftoolbar%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D40-380%26viewport%3D3828%252C1002%252C0.8%26t%3DgHfnflj9FkOBCWkj-1%26scaling%3Dcontain%26starting-point-node-id%3D1%253A9%26mode%3Ddesign",
+		figma2:
+			"https://my.spline.design/fluidholographicliquid-d84fb5fbd806e03e4e87de442abdac3e/",
+		// ... other URLs
+	};
+
+	const [selectedVisualization, setSelectedVisualization] = useState("figma1");
+
+	const renderVisualization = () => {
+		const url = visualizations[selectedVisualization];
+		return <iframe src={url} width="100%" height="100%"></iframe>;
+	};
+
 	return (
 		<Flex
 			align="center"
 			direction="column"
 			content="center"
-			py="9"
+			pt="9"
+			grow="1"
 			width="100%"
-			height="100%"
 		>
 			<Flex
-				py="5"
+				py="4"
 				pl="4"
+				grow="1"
 				width="100%"
 				style={{
 					backgroundColor: "var(--neutral-a12)",
@@ -27,27 +48,33 @@ export default function Window() {
 					color: "var(--neutral-11)",
 				}}
 			>
-				<Text
-					size="2"
-					trim="both"
-					style={{ fontFamily: "var(--font-geist-mono)" }}
+				<Select.Root
+					value={selectedVisualization}
+					onValueChange={setSelectedVisualization}
 				>
-					effects/gradient
-				</Text>
+					<Select.Trigger style={{ fontFamily: "monospace" }}>
+						{selectedVisualization}
+					</Select.Trigger>
+					<Select.Content style={{ fontFamily: "monospace" }}>
+						<Select.Group>
+							<Select.Label>
+								<FigmaLogoIcon width="12" height="12" /> Figma
+							</Select.Label>
+							<Select.Item value="figma1">Toolbar</Select.Item>
+							<Select.Item value="figma2">watercolor</Select.Item>
+							<Select.Item value="figma3">bubbles</Select.Item>
+						</Select.Group>
+						<Select.Separator />
+						<Select.Group>
+							<Select.Label>Interactions</Select.Label>
+							<Select.Item value="dropdown">dropdown</Select.Item>
+							<Select.Item value="button">button</Select.Item>
+						</Select.Group>
+					</Select.Content>
+				</Select.Root>
 			</Flex>
-			<Flex
-				width="100%"
-				mt="0"
-				style={{
-					backgroundColor: "var(--gold-7)",
-					borderWidth: 1,
-					borderBottomLeftRadius: 2,
-					borderBottomRightRadius: 2,
-					borderStyle: "solid",
-					borderColor: "var(--gold-7)",
-				}}
-			>
-				content
+			<Flex width="100%" height="100%" mt="0" grow="1">
+				{renderVisualization()}
 			</Flex>
 		</Flex>
 	);
