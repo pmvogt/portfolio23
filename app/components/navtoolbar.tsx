@@ -117,7 +117,10 @@ function NavLink({ icon, mouseX, action, ...props }: NavLinkProps) {
       );
     } else if (action.type === 'link') {
       return (
-        <Link href={action.href}>
+        <Link
+          className="before:absolute before:inset-0"
+          href={action.href}
+        >
           <div className="w-full h-full" {...props}>
             {icon}
           </div>
@@ -148,7 +151,7 @@ function NavLink({ icon, mouseX, action, ...props }: NavLinkProps) {
 
   return (
     <motion.div
-      className="aspect-square flex-col flex items-center justify-center rounded-full"
+      className="aspect-square relative flex-col flex items-center justify-center rounded-full"
       ref={ref}
       style={{
         width,
