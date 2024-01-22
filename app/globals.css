@@ -4,6 +4,7 @@
 
 body {
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
   margin: 0;
 }
 

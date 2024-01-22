@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { Theme } from '@radix-ui/themes';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+import type { Metadata } from "next";
+import { Theme } from "@radix-ui/themes";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
-import './globals.css';
-import '@radix-ui/themes/styles.css';
+import "./globals.css";
+import "@radix-ui/themes/styles.css";
 
 export const metadata: Metadata = {
-  title: 'Peter Vogt - Software Designer, Design Engineer',
+  title: "Peter Vogt - Software Designer, Design Engineer",
   description: "Peter Vogt's personal site.",
 };
 
@@ -29,12 +29,7 @@ export default function RootLayout({
           scaling="100%"
           appearance="dark"
         >
-          <main>
-            {/* <Flex>
-              <AppHeader />
-            </Flex> */}
-            {children}
-          </main>
+          <main className="font-sans">{children}</main>
         </Theme>
       </body>
     </html>

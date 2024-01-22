@@ -1,18 +1,17 @@
-import { Flex, Container } from '@radix-ui/themes';
-import Window from './components/window';
-
+import { Flex, Container } from "@radix-ui/themes";
+import Window from "./components/window";
 
 export default function Home() {
   return (
     <Flex
       height="100%"
-      pb={{ initial: '0', md: '9' }}
-      px={{ initial: '0', md: '4' }}
+      pb={{ initial: "0", md: "9" }}
+      px={{ initial: "0", md: "4" }}
     >
-      <Container size="1" height="100%">
-        <Flex direction="column" gap="2">
-        <Window />
-          </Flex>
+      <Container size="1" height="100%" width="100%" px="3">
+        <Flex direction="column">
+          <Window />
+        </Flex>
       </Container>
     </Flex>
   );
