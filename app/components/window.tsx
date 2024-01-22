@@ -20,15 +20,15 @@ import {
 import ColorBar from "./colorbar";
 
 export default function Window() {
-  const [density, setDensity] = useState("1");
+  const [density, setDensity] = useState<"1" | "2" | "3" | "4">("1");
 
-  const handleDensityChange = (newDensity) => {
+  const handleDensityChange = (newDensity: "1" | "2" | "3" | "4") => {
     setDensity(newDensity);
   };
 
   return (
     <Container size={density} height="100%" width="100%" px="3">
-      <Flex direction="column" gap="3" width="100%">
+      <Flex direction="column" gap="4" width="100%">
         <Flex pt="6" align="end" justify="between">
           <Flex direction="column">
             <Text style={{ color: "var(--accent-a12)" }} size="3" weight="bold">
@@ -94,11 +94,6 @@ export default function Window() {
           </Flex>
         </Flex>
       </Flex>
-      <Text>
-        Software designer who loves writing code. I like sweating interaction
-        details, automating the work of design teams, and building beautiful
-        interfaces that scale well.
-      </Text>
     </Container>
   );
 }
