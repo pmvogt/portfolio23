@@ -1,7 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Flex, Select } from '@radix-ui/themes';
-import { FigmaLogoIcon } from '@radix-ui/react-icons';
+import { Badge, Box, Flex, Text } from '@radix-ui/themes';
+
+import Spline from '@splinetool/react-spline';
+import { FigmaLogoIcon, HeartFilledIcon } from '@radix-ui/react-icons';
+
+import ColorBar from './colorbar';
+
 
 export default function Window() {
   type Visualizations = {
@@ -10,7 +15,7 @@ export default function Window() {
 
   const visualizations: Visualizations = {
     figma1:
-      'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F5gYofN0G97wuyX0ijtYiiu%2Ftoolbar%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D40-380%26viewport%3D3828%252C1002%252C0.8%26t%3DgHfnflj9FkOBCWkj-1%26scaling%3Dcontain%26starting-point-node-id%3D1%253A9%26mode%3Ddesign',
+      'https://prod.spline.design/ozb1e9hCLqo73g6G/scene.splinecode',
     figma2:
       'https://my.spline.design/fluidholographicliquid-d84fb5fbd806e03e4e87de442abdac3e/',
     // ... other URLs
@@ -24,60 +29,65 @@ export default function Window() {
     return <iframe src={url} width="100%" height="100%"></iframe>;
   };
 
+
   return (
-    <Flex
-      align="center"
-      direction="column"
-      content="center"
-      pt="9"
-      grow="1"
+    <Box>
+       <Flex
+      pt="8"
+      align="end"
+      justify="between"
       width="100%"
-      height="100%"
+      style={{ fontFamily: 'var(--font-geist-sans)' }}
     >
-      <Flex
-        py="4"
-        pl="4"
-        grow="1"
-        width="100%"
-        style={{
-          backgroundColor: 'var(--neutral-a12)',
-          borderTopLeftRadius: 4,
-          borderTopRightRadius: 4,
-          borderWidth: 1,
-          borderStyle: 'solid',
-          borderBottomColor: 'transparent',
-          borderColor: 'var(--neutral-a11)',
-          color: 'var(--neutral-11)',
-        }}
-      >
-        <Select.Root
-          value={selectedVisualization}
-          onValueChange={setSelectedVisualization}
+      <Flex direction="column">
+          <Text
+
+          style={{ color: 'var(--accent-a12)' }}
+          size="3"
+          weight="bold"
         >
-          <Select.Trigger style={{ fontFamily: 'monospace' }}>
-            {selectedVisualization}
-          </Select.Trigger>
-          <Select.Content style={{ fontFamily: 'monospace' }}>
-            <Select.Group>
-              <Select.Label>
-                <FigmaLogoIcon width="12" height="12" /> Figma
-              </Select.Label>
-              <Select.Item value="figma1">Toolbar</Select.Item>
-              <Select.Item value="figma2">watercolor</Select.Item>
-              <Select.Item value="figma3">bubbles</Select.Item>
-            </Select.Group>
-            <Select.Separator />
-            <Select.Group>
-              <Select.Label>Interactions</Select.Label>
-              <Select.Item value="dropdown">dropdown</Select.Item>
-              <Select.Item value="button">button</Select.Item>
-            </Select.Group>
-          </Select.Content>
-        </Select.Root>
+          Peter Vogt
+        </Text>
       </Flex>
-      <Flex width="100%" height="100%" mt="0" grow="1">
-        {renderVisualization()}
+      <Flex>
+        <Text
+          style={{
+            color: 'var(--neutral-11)',
+          }}
+          size="2"
+        >
+          Design Engineer
+        </Text>
       </Flex>
     </Flex>
+      <Spline scene="https://prod.spline.design/ozb1e9hCLqo73g6G/scene.splinecode" />
+      <Flex
+      justify={{ initial: 'center', md: 'between' }}
+      align="center"
+      width="100%"
+    >
+      <Flex
+        display={{
+          initial: 'none',
+          md: 'flex',
+        }}
+      >
+        <Badge size="1" highContrast variant="surface" color="gray">
+          <FigmaLogoIcon width="16" height="16" />
+          100
+          <HeartFilledIcon width="16" height="16" />
+        </Badge>
+      </Flex>
+
+      <Flex
+        display={{
+          initial: 'none',
+          md: 'flex',
+        }}
+      >
+        <ColorBar />
+      </Flex>
+    </Flex>
+    </Box>
   );
 }

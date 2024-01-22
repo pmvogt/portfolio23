@@ -1,7 +1,6 @@
 import { Flex, Container } from '@radix-ui/themes';
-import AppHeader from './components/appheader';
-import AppFooter from './components/appfooter';
 import Window from './components/window';
+
 
 export default function Home() {
   return (
@@ -10,9 +9,11 @@ export default function Home() {
       pb={{ initial: '0', md: '9' }}
       px={{ initial: '0', md: '4' }}
     >
-      <div className="max-w-screen-2xl mx-auto w-full">
+      <Container size="1" height="100%">
+        <Flex direction="column" gap="2">
         <Window />
-      </div>
+          </Flex>
+      </Container>
     </Flex>
   );
 }

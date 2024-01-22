@@ -18,8 +18,8 @@ export default function ColorBar() {
         <Box
           key={color}
           style={{ backgroundColor: `var(--${color})` }}
-          height="5"
-          width="8"
+          height="2"
+          width="6"
         />
       ))}
     </Flex>
