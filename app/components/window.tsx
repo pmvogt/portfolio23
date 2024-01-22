@@ -12,6 +12,7 @@ import {
 import Spline from "@splinetool/react-spline";
 import {
   CaretDownIcon,
+  CheckIcon,
   ColumnSpacingIcon,
   FigmaLogoIcon,
   HeartFilledIcon,
@@ -24,6 +25,10 @@ export default function Window() {
 
   const handleDensityChange = (newDensity: "1" | "2" | "3" | "4") => {
     setDensity(newDensity);
+  };
+
+  const Checkmark = () => {
+    return <CheckIcon />;
   };
 
   return (
@@ -53,13 +58,13 @@ export default function Window() {
               <DropdownMenu.Content size="1">
                 <DropdownMenu.Label>Layout Density</DropdownMenu.Label>
                 <DropdownMenu.Item onSelect={() => handleDensityChange("1")}>
-                  Compact
-                </DropdownMenu.Item>
-                <DropdownMenu.Item onSelect={() => handleDensityChange("3")}>
-                  High
+                  Compact {density === "1" && <Checkmark />}
                 </DropdownMenu.Item>
                 <DropdownMenu.Item onSelect={() => handleDensityChange("2")}>
-                  Low
+                  Low {density === "2" && <Checkmark />}
+                </DropdownMenu.Item>
+                <DropdownMenu.Item onSelect={() => handleDensityChange("3")}>
+                  High {density === "3" && <Checkmark />}
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
@@ -94,11 +99,6 @@ export default function Window() {
           </Flex>
         </Flex>
       </Flex>
-      <Text>
-        Software designer who loves writing code. I like sweating interaction
-        details, automating the work of design teams, and building beautiful
-        interfaces that scale well.
-      </Text>
     </Container>
   );
 }
