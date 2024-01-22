@@ -94,6 +94,11 @@ export default function Window() {
           </Flex>
         </Flex>
       </Flex>
+      <Text>
+        Software designer who loves writing code. I like sweating interaction
+        details, automating the work of design teams, and building beautiful
+        interfaces that scale well.
+      </Text>
     </Container>
   );
 }
