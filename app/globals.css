@@ -4,7 +4,7 @@
 
 body {
   -webkit-font-smoothing: antialiased;
-  font-synthesis: none;
+  font-synthesis: none; /* Resolves geist bold looking odd on Safari */
   margin: 0;
 }
 
