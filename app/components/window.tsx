@@ -1,12 +1,14 @@
-import { Flex, Text, DropdownMenu, IconButton } from "@radix-ui/themes";
-
 import Spline from "@splinetool/react-spline";
+
+import { Flex, Text, DropdownMenu, IconButton } from "@radix-ui/themes";
 import { CheckIcon, ColumnSpacingIcon } from "@radix-ui/react-icons";
 
-import ColorBar from "./colorbar";
-import { useState } from "react";
+interface WindowProps {
+  density: "1" | "2" | "3" | "4";
+  onDensityChange: (newDensity: "1" | "2" | "3" | "4") => void;
+}
 
-export default function Window({ density, onDensityChange }) {
+export default function Window({ density, onDensityChange }: WindowProps) {
   const handleDensityChange = (newDensity: "1" | "2" | "3" | "4") => {
     onDensityChange(newDensity);
   };
@@ -17,7 +19,7 @@ export default function Window({ density, onDensityChange }) {
 
   return (
     <Flex direction="column" gap="4" width="100%">
-      <Flex pt="6" align="end" justify="between">
+      <Flex pt="6" align="center" justify="between">
         <Flex direction="column">
           <Text style={{ color: "var(--accent-a12)" }} size="3" weight="bold">
             Peter Vogt

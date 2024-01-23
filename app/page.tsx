@@ -20,6 +20,13 @@ export default function Home() {
       <Container size={density}>
         <Flex direction="column" gap="4" width="100%">
           <Window density={density} onDensityChange={setDensity} />
+
+          <Text size="2">
+            Designer that loves to <Code>code</Code>. Fan of sweating
+            interaction details, supercharging the work of design teams, and
+            building beautiful, well-documented design systems.
+          </Text>
+
           <Flex
             justify={{ initial: "center", md: "between" }}
             align="center"
@@ -31,10 +38,9 @@ export default function Home() {
                 md: "flex",
               }}
             >
-              <Badge size="1" highContrast variant="surface" color="gray">
+              <Badge highContrast variant="surface" color="gray">
                 <FigmaLogoIcon width="16" height="16" />
                 100
-                <HeartFilledIcon width="16" height="16" />
               </Badge>
             </Flex>
 
@@ -47,11 +53,6 @@ export default function Home() {
               <ColorBar />
             </Flex>
           </Flex>
-          <Text size="2">
-            Designer that loves to <Code>code.</Code> Fan of sweating
-            interaction details, automating the work of design teams, and
-            building well-documented, beautiful, scaled design systems.
-          </Text>
         </Flex>
       </Container>
     </Flex>
