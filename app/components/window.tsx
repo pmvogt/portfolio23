@@ -1,6 +1,12 @@
 import Spline from "@splinetool/react-spline";
 
-import { Flex, Text, DropdownMenu, IconButton } from "@radix-ui/themes";
+import {
+  Flex,
+  Text,
+  DropdownMenu,
+  IconButton,
+  Tooltip,
+} from "@radix-ui/themes";
 import { CheckIcon, ColumnSpacingIcon } from "@radix-ui/react-icons";
 
 interface WindowProps {
@@ -20,10 +26,12 @@ export default function Window({ density, onDensityChange }: WindowProps) {
   return (
     <Flex direction="column" gap="4" width="100%">
       <Flex pt="6" align="center" justify="between">
-        <Flex direction="column">
-          <Text style={{ color: "var(--accent-a12)" }} size="3" weight="bold">
-            Peter Vogt
-          </Text>
+        <Flex className="cursor-crosshair" direction="column">
+          <Tooltip content="Pronounced 'vote'" side="right">
+            <Text style={{ color: "var(--accent-a12)" }} size="3" weight="bold">
+              Peter Vogt
+            </Text>
+          </Tooltip>
           <Text
             style={{
               color: "var(--gray-10)",
@@ -46,10 +54,10 @@ export default function Window({ density, onDensityChange }: WindowProps) {
                 Compact {density === "1" && <Checkmark />}
               </DropdownMenu.Item>
               <DropdownMenu.Item onSelect={() => handleDensityChange("2")}>
-                Low {density === "2" && <Checkmark />}
+                High {density === "2" && <Checkmark />}
               </DropdownMenu.Item>
               <DropdownMenu.Item onSelect={() => handleDensityChange("3")}>
-                High {density === "3" && <Checkmark />}
+                Low {density === "3" && <Checkmark />}
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>

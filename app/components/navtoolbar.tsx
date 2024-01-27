@@ -16,7 +16,7 @@ import {
   SpeakerOffIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-import { Flex, IconButton } from "@radix-ui/themes";
+import { Avatar, Flex, IconButton } from "@radix-ui/themes";
 import Link from "next/link";
 
 type NavLinkAction =
@@ -79,7 +79,7 @@ export default function NavToolbar() {
       onMouseLeave={() => mouseX.set(Infinity)}
     >
       <Flex
-        className="mx-auto flex h-16 items-center gap-4"
+        className="mx-auto flex h-16 items-center  gap-4"
         style={{
           background: `var(--color-surface)`,
           borderWidth: 1,
@@ -98,6 +98,10 @@ export default function NavToolbar() {
             action={link.action as { type: "link"; href: string }}
           ></NavLink>
         ))}
+        <Avatar
+          radius="full"
+          src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?&w=256&h=256&q=70&crop=focalpoint&fp-x=0.5&fp-y=0.3&fp-z=1&fit=crop"
+        />
       </Flex>
     </motion.div>
   );

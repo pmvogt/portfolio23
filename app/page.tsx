@@ -4,9 +4,10 @@ import { useState } from "react";
 
 import { Badge, Code, Container, Flex, Text } from "@radix-ui/themes";
 import Window from "./components/window";
-import { FigmaLogoIcon, HeartFilledIcon } from "@radix-ui/react-icons";
+import { FigmaLogoIcon } from "@radix-ui/react-icons";
 
 import ColorBar from "./components/colorbar";
+// import NavToolbar from "./components/navtoolbar";
 
 export default function Home() {
   const [density, setDensity] = useState<"1" | "2" | "3" | "4">("1");
@@ -22,7 +23,7 @@ export default function Home() {
           <Window density={density} onDensityChange={setDensity} />
 
           <Text size="2">
-            Designer that loves to <Code>code</Code>. Fan of sweating
+            Designer that loves to <Code>code</Code>. Focused on sweating
             interaction details, supercharging the work of design teams, and
             building beautiful, well-documented design systems.
           </Text>
@@ -54,6 +55,8 @@ export default function Home() {
             </Flex>
           </Flex>
         </Flex>
+
+        {/* <NavToolbar /> */}
       </Container>
     </Flex>
   );
