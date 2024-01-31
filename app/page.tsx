@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 
-import { Badge, Code, Container, Flex, Text } from "@radix-ui/themes";
+import {
+  Badge,
+  Code,
+  Container,
+  Heading,
+  Flex,
+  Text,
+  Separator,
+  Box,
+} from "@radix-ui/themes";
 import Window from "./components/window";
 import { FigmaLogoIcon } from "@radix-ui/react-icons";
 
@@ -56,6 +65,119 @@ export default function Home() {
           </Flex>
         </Flex>
 
+        <Heading weight="light" mt="9" as="h2" size="3">
+          Experience
+        </Heading>
+
+        <Box pb="6" width="100%">
+          <Flex mt="5" justify="between" width="100%">
+            <Text as="p" size="2">
+              USAA
+            </Text>
+          </Flex>
+
+          <Flex justify="between" mt="1">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Lead Designer, Design Systems
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2022-2023
+            </Text>
+          </Flex>
+          <Flex mt="1" justify="between" width="100%">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Sr Designer, Design Technologist
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2019-2022
+            </Text>
+          </Flex>
+
+          <Separator size="4" my="3" />
+
+          <Flex mt="2" justify="between" width="100%">
+            <Text as="p" size="2">
+              Stellar Elements
+            </Text>
+          </Flex>
+
+          <Flex justify="between" mt="1">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Design Technologist
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2017-2019
+            </Text>
+          </Flex>
+
+          <Separator size="4" my="3" />
+
+          <Flex mt="2" justify="between" width="100%">
+            <Text as="p" size="2">
+              Lightcast
+            </Text>
+          </Flex>
+
+          <Flex justify="between" mt="1">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Product Designer
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2016-2017
+            </Text>
+          </Flex>
+
+          <Separator size="4" my="3" />
+
+          <Flex mt="2" justify="between" width="100%">
+            <Text as="p" size="2">
+              Pigeonly (YC W15)
+            </Text>
+          </Flex>
+
+          <Flex justify="between" mt="1">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Sr Designer
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2015-2016
+            </Text>
+          </Flex>
+
+          <Separator size="4" my="3" />
+
+          <Flex mt="2" justify="between" width="100%">
+            <Text as="p" size="2">
+              Munzee
+            </Text>
+          </Flex>
+
+          <Flex justify="between" mt="1">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Designer
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2014-2015
+            </Text>
+          </Flex>
+
+          <Separator size="4" my="3" />
+
+          <Flex mt="2" justify="between" width="100%">
+            <Text as="p" size="2">
+              Mark Cuban Companies
+            </Text>
+          </Flex>
+
+          <Flex justify="between" mt="1">
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              Designer
+            </Text>
+            <Text as="p" size="2" style={{ color: "var(--gray-10)" }}>
+              2012-2014
+            </Text>
+          </Flex>
+        </Box>
         {/* <NavToolbar /> */}
       </Container>
     </Flex>
