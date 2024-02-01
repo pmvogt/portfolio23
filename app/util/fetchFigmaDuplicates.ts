@@ -10,7 +10,7 @@ export interface FigmaMetaItem {
 async function fetchFigmaDuplicates(): Promise<FigmaData> {
 	try {
 		const response = await fetch(
-			`https://www.figma.com/api/hub_files/profile/918316274165785351}`
+			`https://www.figma.com/api/hub_files/profile/918316274165785351`
 		);
 
 		if (!response.ok) {
