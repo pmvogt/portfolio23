@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
+import NavToolbar from "./components/navtoolbar";
 
 export const metadata: Metadata = {
   title: "Peter Vogt - Software Designer, Design Engineer",
@@ -29,7 +30,14 @@ export default function RootLayout({
           scaling="100%"
           appearance="dark"
         >
-          <main className="font-sans">{children}</main>
+          <main className="font-sans">
+            {children}{" "}
+            <div className="flex flex-col justify-center bottom-4 items-center  overflow-hidden fixed w-full">
+              <div className="mx-auto w-full max-w-md">
+                <NavToolbar />
+              </div>
+            </div>
+          </main>
         </Theme>
       </body>
     </html>

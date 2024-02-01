@@ -16,6 +16,7 @@ import Window from "./components/window";
 import { FigmaLogoIcon } from "@radix-ui/react-icons";
 
 import ColorBar from "./components/colorbar";
+import NavToolbar from "./components/navtoolbar";
 // import NavToolbar from "./components/navtoolbar";
 
 export default function Home() {
@@ -179,7 +180,6 @@ export default function Home() {
             </Text>
           </Flex>
         </Box>
-        {/* <NavToolbar /> */}
       </Container>
     </Flex>
   );

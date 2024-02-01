@@ -1,5 +1,5 @@
 "use client";
-import { useRef, ReactNode } from "react";
+import { Fragment, useRef, ReactNode } from "react";
 import {
   MotionValue,
   motion,
@@ -8,7 +8,6 @@ import {
   useTransform,
 } from "framer-motion";
 import {
-  BackpackIcon,
   EnvelopeClosedIcon,
   FigmaLogoIcon,
   MoonIcon,
@@ -16,7 +15,7 @@ import {
   SpeakerOffIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-import { Avatar, Flex, IconButton } from "@radix-ui/themes";
+import { Avatar, Flex, IconButton, Separator } from "@radix-ui/themes";
 import Link from "next/link";
 
 type NavLinkAction =
@@ -32,45 +31,51 @@ interface NavLinkProps {
 export default function NavToolbar() {
   let mouseX = useMotionValue(Infinity);
 
-  const links = [
-    {
-      name: "Home",
-      icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
-      action: { type: "link", href: "/" },
-    },
-    {
-      name: "Craft",
-      icon: <ReaderIcon style={{ color: "var(--accent-a11)" }} />,
-      action: { type: "link", href: "/404" },
-    },
-    {
-      name: "Contact",
-      icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
-      action: { type: "link", href: "/" },
-    },
-    {
-      name: "Figma",
-      icon: <FigmaLogoIcon style={{ color: "var(--accent-a11)" }} />,
-      action: {
-        type: "link",
-        href: "https://figma.com/@vogtbot9000",
+  const linkGroups = [
+    [
+      // Group 1: Craft, Blog, Contact
+      {
+        name: "Craft",
+        icon: <ReaderIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "/craft" },
       },
-    },
-    {
-      name: "X",
-      icon: <TwitterLogoIcon style={{ color: "var(--accent-a11)" }} />,
-      action: { type: "link", href: "https://www.x.com/vogtbot" },
-    },
-    {
-      name: "ThemeToggle",
-      icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
-      action: { type: "link", href: "/" },
-    },
-    {
-      name: "SoundToggle",
-      icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
-      action: { type: "link", href: "/" },
-    },
+      {
+        name: "Blog",
+        icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "/blog" },
+      },
+      {
+        name: "Contact",
+        icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "/contact" },
+      },
+    ],
+    [
+      // Group 2: Figma, Twitter
+      {
+        name: "Figma",
+        icon: <FigmaLogoIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "https://figma.com/@vogtbot9000" },
+      },
+      {
+        name: "X",
+        icon: <TwitterLogoIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "https://www.x.com/vogtbot" },
+      },
+    ],
+    [
+      // Group 3: Site theme, sound toggle
+      {
+        name: "ThemeToggle",
+        icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "/" },
+      },
+      {
+        name: "SoundToggle",
+        icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
+        action: { type: "link", href: "/" },
+      },
+    ],
   ];
 
   return (
@@ -79,30 +84,37 @@ export default function NavToolbar() {
       onMouseLeave={() => mouseX.set(Infinity)}
     >
       <Flex
-        className="mx-auto flex h-16 items-center  gap-4"
+        className="mx-auto w-full flex h-16 items-center"
+        justify="between"
         style={{
-          background: `var(--color-surface)`,
+          backgroundColor: "var(--gray-1)",
           borderWidth: 1,
-          borderColor: `var(--gold-a7)`,
+          borderColor: `var(--gray-8)`,
           borderStyle: "solid",
           borderRadius: 9999,
         }}
-        p="4"
-        gap="2"
+        px="4"
       >
-        {links.map((link, i) => (
-          <NavLink
-            key={i}
-            mouseX={mouseX}
-            icon={link.icon}
-            action={link.action as { type: "link"; href: string }}
-          ></NavLink>
-        ))}
-        <Avatar
-          fallback="pv"
-          radius="full"
-          src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?&w=256&h=256&q=70&crop=focalpoint&fp-x=0.5&fp-y=0.3&fp-z=1&fit=crop"
-        />
+        <Flex shrink="1">
+          <Avatar size="2" fallback="pv" radius="full" src="/yo.png" />
+        </Flex>
+        <Flex grow="1" gap="2" align="center">
+          {linkGroups.map((group, groupIndex) => (
+            <Fragment key={groupIndex}>
+              {group.map((link, linkIndex) => (
+                <NavLink
+                  key={linkIndex}
+                  mouseX={mouseX}
+                  icon={link.icon}
+                  action={link.action as { type: "link"; href: string }}
+                ></NavLink>
+              ))}
+              {groupIndex < linkGroups.length - 1 && (
+                <Separator orientation="vertical" />
+              )}
+            </Fragment>
+          ))}
+        </Flex>
       </Flex>
     </motion.div>
   );
