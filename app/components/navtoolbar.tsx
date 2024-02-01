@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import {
+  BackpackIcon,
   EnvelopeClosedIcon,
   FigmaLogoIcon,
   MoonIcon,
@@ -15,7 +16,7 @@ import {
   SpeakerOffIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-import { Avatar, Flex, IconButton, Separator } from "@radix-ui/themes";
+import { Avatar, Flex, IconButton, Separator, Tooltip } from "@radix-ui/themes";
 import Link from "next/link";
 
 type NavLinkAction =
@@ -23,6 +24,7 @@ type NavLinkAction =
   | { type: "link"; href: string };
 
 interface NavLinkProps {
+  name: string;
   action: NavLinkAction;
   icon?: ReactNode;
   mouseX: MotionValue<number>;
@@ -33,25 +35,23 @@ export default function NavToolbar() {
 
   const linkGroups = [
     [
-      // Group 1: Craft, Blog, Contact
       {
         name: "Craft",
-        icon: <ReaderIcon style={{ color: "var(--accent-a11)" }} />,
+        icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
         action: { type: "link", href: "/craft" },
       },
       {
         name: "Blog",
-        icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
+        icon: <ReaderIcon style={{ color: "var(--accent-a11)" }} />,
         action: { type: "link", href: "/blog" },
       },
+    ],
+    [
       {
         name: "Contact",
         icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
         action: { type: "link", href: "/contact" },
       },
-    ],
-    [
-      // Group 2: Figma, Twitter
       {
         name: "Figma",
         icon: <FigmaLogoIcon style={{ color: "var(--accent-a11)" }} />,
@@ -64,14 +64,13 @@ export default function NavToolbar() {
       },
     ],
     [
-      // Group 3: Site theme, sound toggle
       {
-        name: "ThemeToggle",
+        name: "Toggle theme",
         icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
         action: { type: "link", href: "/" },
       },
       {
-        name: "SoundToggle",
+        name: "Toggle sound",
         icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
         action: { type: "link", href: "/" },
       },
@@ -84,8 +83,9 @@ export default function NavToolbar() {
       onMouseLeave={() => mouseX.set(Infinity)}
     >
       <Flex
-        className="mx-auto w-full flex h-16 items-center"
+        className="h-16"
         justify="between"
+        align="center"
         style={{
           backgroundColor: "var(--gray-1)",
           borderWidth: 1,
@@ -95,14 +95,15 @@ export default function NavToolbar() {
         }}
         px="4"
       >
-        <Flex shrink="1">
+        <Flex>
           <Avatar size="2" fallback="pv" radius="full" src="/yo.png" />
         </Flex>
-        <Flex grow="1" gap="2" align="center">
+        <Flex gap="3" align="center">
           {linkGroups.map((group, groupIndex) => (
             <Fragment key={groupIndex}>
               {group.map((link, linkIndex) => (
                 <NavLink
+                  name={link.name}
                   key={linkIndex}
                   mouseX={mouseX}
                   icon={link.icon}
@@ -110,7 +111,7 @@ export default function NavToolbar() {
                 ></NavLink>
               ))}
               {groupIndex < linkGroups.length - 1 && (
-                <Separator orientation="vertical" />
+                <Separator size="2" orientation="vertical" />
               )}
             </Fragment>
           ))}
@@ -120,7 +121,7 @@ export default function NavToolbar() {
   );
 }
 
-function NavLink({ icon, mouseX, action, ...props }: NavLinkProps) {
+function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
   const renderContent = () => {
     if (action.type === "button") {
       return (
@@ -160,16 +161,18 @@ function NavLink({ icon, mouseX, action, ...props }: NavLinkProps) {
   console.log(distance.get(), width.get());
 
   return (
-    <motion.div
-      className="aspect-square relative flex-col flex items-center justify-center rounded-full"
-      ref={ref}
-      style={{
-        width,
-        borderColor: "var(--gold-a7)",
-        borderWidth: 1,
-      }}
-    >
-      {renderContent()}
-    </motion.div>
+    <Tooltip content={name}>
+      <motion.div
+        className="aspect-square relative flex-col flex items-center justify-center rounded-full"
+        ref={ref}
+        style={{
+          width,
+          borderColor: "var(--gold-a7)",
+          borderWidth: 1,
+        }}
+      >
+        {renderContent()}
+      </motion.div>
+    </Tooltip>
   );
 }

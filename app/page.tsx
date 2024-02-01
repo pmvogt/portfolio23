@@ -32,13 +32,6 @@ export default function Home() {
         <Flex direction="column" gap="4" width="100%">
           <Window density={density} onDensityChange={setDensity} />
 
-          <Text size="2">
-            Designer that loves to <Code>code</Code>. Focused on sweating
-            interaction details, web a11y, supercharging the work of design
-            teams, + building beautiful, well-documented design systems.
-            Standing on business since 1987.
-          </Text>
-
           <Flex
             justify={{ initial: "center", md: "between" }}
             align="center"
@@ -65,9 +58,15 @@ export default function Home() {
               <ColorBar />
             </Flex>
           </Flex>
+          <Text size="2">
+            Designer that loves to <Code>code</Code>. Focused on sweating
+            interaction details, web a11y, supercharging the work of design
+            teams, + building beautiful, well-documented design systems.
+            Standing on business since 1987.
+          </Text>
         </Flex>
 
-        <Heading weight="light" mt="9" as="h2" size="3">
+        <Heading weight="light" mt="7" as="h2" size="3">
           Experience
         </Heading>
 
