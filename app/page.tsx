@@ -33,8 +33,9 @@ export default function Home() {
 
           <Text size="2">
             Designer that loves to <Code>code</Code>. Focused on sweating
-            interaction details, supercharging the work of design teams, and
-            building beautiful, well-documented design systems.
+            interaction details, web a11y, supercharging the work of design
+            teams, + building beautiful, well-documented design systems.
+            Standing on business since 1987.
           </Text>
 
           <Flex

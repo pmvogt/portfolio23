@@ -28,7 +28,7 @@ export default function Window({ density, onDensityChange }: WindowProps) {
       <Flex pt="6" align="center" justify="between">
         <Flex className="cursor-crosshair" direction="column">
           <Tooltip content="Pronounced 'vote'" side="right">
-            <Text style={{ color: "var(--accent-a12)" }} size="3" weight="bold">
+            <Text size="3" weight="bold">
               Peter Vogt
             </Text>
           </Tooltip>
