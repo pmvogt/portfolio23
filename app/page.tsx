@@ -16,8 +16,6 @@ import Window from "./components/window";
 import { FigmaLogoIcon } from "@radix-ui/react-icons";
 
 import ColorBar from "./components/colorbar";
-import NavToolbar from "./components/navtoolbar";
-// import NavToolbar from "./components/navtoolbar";
 
 export default function Home() {
   const [density, setDensity] = useState<"1" | "2" | "3" | "4">("1");
@@ -70,7 +68,7 @@ export default function Home() {
           Experience
         </Heading>
 
-        <Box pb="6" width="100%">
+        <Box pb="9" width="100%">
           <Flex mt="5" justify="between" width="100%">
             <Text as="p" size="2">
               USAA
