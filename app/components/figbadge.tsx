@@ -1,36 +1,35 @@
-"use client";
+// figbadge.tsx
 import React, { useEffect, useState } from "react";
 import { Badge } from "@radix-ui/themes";
 import { FigmaLogoIcon } from "@radix-ui/react-icons";
-import fetchFigmaDuplicates from "../util/fetchFigmaDuplicates";
+
+const getDupes = async () => {
+	const id = "918316274165785351";
+	const data = await fetch(`https://www.figma.com/api/hub_files/profile/${id}`);
+	const json = await data.json();
+
+	return json.meta.reduce((acc: number, curr: { duplicate_count: number }) => {
+		acc += curr.duplicate_count;
+		return acc;
+	}, 0);
+};
 
 export default function FigBadge() {
-	const [duplicates, setDuplicates] = useState<number | null>(null);
+	const [dupes, setDupes] = useState<number | null>(null);
 
 	useEffect(() => {
-		const loadData = async () => {
-			try {
-				const data = await fetchFigmaDuplicates();
-				const duplicatesCount = data.meta.reduce(
-					(acc: number, curr: { duplicate_count: number }) =>
-						acc + curr.duplicate_count,
-					0
-				);
-				setDuplicates(duplicatesCount);
-			} catch (error) {
-				console.error(error);
-				setDuplicates(null);
-			}
-		};
-
-		loadData();
+		getDupes()
+			.then(setDupes)
+			.catch((error) => {
+				console.error("Error fetching duplicates:", error);
+				setDupes(null);
+			});
 	}, []);
 
 	return (
 		<Badge highContrast variant="surface" color="gray">
 			<FigmaLogoIcon width="16" height="16" />
-			{duplicates !== null ? duplicates : "Loading..."}{" "}
-			{/* Display the number of duplicates or loading */}
+			{dupes !== null ? dupes : "Loading..."}
 		</Badge>
 	);
 }
