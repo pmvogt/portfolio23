@@ -1,30 +1,18 @@
-// figbadge.tsx
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Badge } from "@radix-ui/themes";
 import { FigmaLogoIcon } from "@radix-ui/react-icons";
 
 const getDupes = async () => {
-	const id = "918316274165785351";
-	const data = await fetch(`https://www.figma.com/api/hub_files/profile/${id}`);
-	const json = await data.json();
-
-	return json.meta.reduce((acc: number, curr: { duplicate_count: number }) => {
-		acc += curr.duplicate_count;
-		return acc;
-	}, 0);
+	const response = await fetch("/api/figma");
+	const data = await response.json();
+	return data.dupes;
 };
 
 export default function FigBadge() {
 	const [dupes, setDupes] = useState<number | null>(null);
-
-	useEffect(() => {
-		getDupes()
-			.then(setDupes)
-			.catch((error) => {
-				console.error("Error fetching duplicates:", error);
-				setDupes(null);
-			});
-	}, []);
+	console.log(dupes);
 
 	return (
 		<Badge highContrast variant="surface" color="gray">
