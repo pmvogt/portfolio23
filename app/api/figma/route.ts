@@ -1,13 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 interface MetaItem {
 	duplicate_count: number;
 }
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
+export async function GET(request: Request) {
 	const id = "918316274165785351";
 	try {
 		const data = await fetch(
@@ -22,10 +19,11 @@ export default async function handler(
 			(acc: number, curr: MetaItem) => acc + curr.duplicate_count,
 			0
 		);
-
-		res.status(200).json({ dupes });
+		console.log({ dupes });
+		// res.status(200).json({ dupes });
+		return NextResponse.json({ dupes } as any, { status: 200 });
 	} catch (error: any) {
 		console.error("Error fetching duplicates:", error);
-		res.status(500).json({ error: error.message });
+		return NextResponse.error(); // Remove the second argument
 	}
 }

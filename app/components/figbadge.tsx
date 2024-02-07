@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { Badge } from "@radix-ui/themes";
 import { FigmaLogoIcon } from "@radix-ui/react-icons";
@@ -7,12 +5,21 @@ import { FigmaLogoIcon } from "@radix-ui/react-icons";
 const getDupes = async () => {
 	const response = await fetch("/api/figma");
 	const data = await response.json();
+	console.log({ data });
 	return data.dupes;
 };
 
 export default function FigBadge() {
 	const [dupes, setDupes] = useState<number | null>(null);
-	console.log(dupes);
+
+	useEffect(() => {
+		getDupes()
+			.then(setDupes)
+			.catch((error) => {
+				console.error("Error fetching duplicates:", error);
+				setDupes(null);
+			});
+	}, []); // The empty array ensures this effect runs once on mount
 
 	return (
 		<Badge highContrast variant="surface" color="gray">
