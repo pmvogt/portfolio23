@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <Flex
       height="100%"
-      pb={{ initial: "0", md: "9" }}
+      pb={{ initial: "0", md: "6" }}
       px={{ initial: "0", md: "4" }}
     >
       <HomeContent />

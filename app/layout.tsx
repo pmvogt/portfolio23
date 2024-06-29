@@ -33,9 +33,9 @@ export default function RootLayout({
           <main className="font-sans">
             {children}
             <div className="flex flex-col justify-center bottom-4 items-center overflow-hidden fixed w-full">
-              <div className="mx-auto w-full max-w-md">
+              {/* <div className="mx-auto w-full max-w-md">
                 <NavToolbar />
-              </div>
+              </div> */}
             </div>
           </main>
         </Theme>

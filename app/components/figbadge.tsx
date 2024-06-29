@@ -19,7 +19,7 @@ export default function FigBadge() {
         console.error("Error fetching duplicates:", error);
         setDupes(null);
       });
-  }, []); // The empty array ensures this effect runs once on mount
+  }, []); 
 
   return (
     <Badge highContrast variant="surface" color="gray">
