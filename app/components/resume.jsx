@@ -10,15 +10,15 @@ const JobEntry = ({ company, positions }) => (
     </Flex>
     {positions.map(({ title, period }, index) => (
       <Flex key={index} justify="between" mt={index === 0 ? '1' : '1'}>
-        <Text as="p" size="2" style={{ color: 'var(--gray-10)' }}>
+        <Text as="p" size="2" style={{ color: 'var(--mauve-a11)' }}>
           {title}
         </Text>
-        <Text as="p" size="2" style={{ color: 'var(--gray-10)' }}>
+        <Text as="p" size="2" style={{ color: 'var(--mauve-a11)' }}>
           {period}
         </Text>
       </Flex>
     ))}
-    <Separator size="4" my="3" />
+    <Separator size="4" my="3" color="bronze" />
   </>
 );
 

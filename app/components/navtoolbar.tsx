@@ -1,16 +1,8 @@
 'use client';
 import { Fragment, useRef, ReactNode } from 'react';
 import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import {
-  BackpackIcon,
-  EnvelopeClosedIcon,
-  FigmaLogoIcon,
-  MoonIcon,
-  ReaderIcon,
-  SpeakerOffIcon,
-  TwitterLogoIcon,
-} from '@radix-ui/react-icons';
-import { Avatar, Flex, IconButton, Separator, Tooltip } from '@radix-ui/themes';
+import { FigmaLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import { Avatar, Flex, IconButton, Tooltip } from '@radix-ui/themes';
 import Link from 'next/link';
 
 type NavLinkAction = { type: 'button'; onClick: () => void } | { type: 'link'; href: string };
@@ -23,7 +15,7 @@ interface NavLinkProps {
 }
 
 export default function NavToolbar() {
-  let mouseX = useMotionValue(Infinity);
+  const mouseX = useMotionValue(Infinity);
 
   const linkGroups = [
     [
@@ -32,11 +24,11 @@ export default function NavToolbar() {
       //   icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
       //   action: { type: "link", href: "/craft" },
       // },
-      {
-        name: 'Blog',
-        icon: <ReaderIcon style={{ color: 'var(--accent-a11)' }} />,
-        action: { type: 'link', href: '/blog' },
-      },
+      // {
+      //   name: 'Blog',
+      //   icon: <ReaderIcon style={{ color: 'var(--accent-a11)' }} />,
+      //   action: { type: 'link', href: '/blog' },
+      // },
     ],
     [
       // {
@@ -75,6 +67,7 @@ export default function NavToolbar() {
         className="h-16"
         justify="between"
         align="center"
+        gap="3"
         style={{
           backgroundColor: 'var(--gray-1)',
           borderWidth: 1,
@@ -99,7 +92,8 @@ export default function NavToolbar() {
                   action={link.action as { type: 'link'; href: string }}
                 />
               ))}
-              {groupIndex < linkGroups.length - 1 && <Separator size="2" orientation="vertical" />}
+              {/* TODO: bring this back when blog, etc are done */}
+              {/* {groupIndex < linkGroups.length - 1 && <Separator size="2" orientation="vertical" />} */}
             </Fragment>
           ))}
         </Flex>
@@ -127,19 +121,19 @@ function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
     }
   };
 
-  let ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? {
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? {
       x: 0,
       width: 0,
     };
     return Math.abs(val - (bounds.x + bounds.width / 2)); // Use absolute value for distance
   });
 
-  let widthSync = useTransform(distance, [-80, 0, 80], [40, 60, 30]);
+  const widthSync = useTransform(distance, [-80, 0, 80], [40, 60, 30]);
 
-  let width = useSpring(widthSync, {
+  const width = useSpring(widthSync, {
     mass: 0.1,
     stiffness: 200,
     damping: 10,

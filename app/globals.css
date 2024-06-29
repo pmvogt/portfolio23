@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
-  font-synthesis: none; /* Resolves geist bold looking odd on Safari */
+  font-synthesis: none;
   margin: 0;
 }
 
@@ -12,6 +20,12 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  overflow-y: auto;
   overflow-x: hidden;
-  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+}
+
+#__next {
+  height: 100%;
 }

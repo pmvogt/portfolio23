@@ -3,7 +3,12 @@ import HomeContent from './components/homecontent';
 
 export default function Home() {
   return (
-    <Flex height="100%" pb={{ initial: '4', md: '6' }} px={{ initial: '0', md: '4' }}>
+    <Flex
+      height="100%"
+      width="100%"
+      px={{ initial: '2', md: '4' }}
+      style={{ minHeight: '100vh', maxWidth: '100vw' }}
+    >
       <HomeContent />
     </Flex>
   );

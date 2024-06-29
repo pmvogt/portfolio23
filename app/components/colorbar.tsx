@@ -8,7 +8,7 @@ export default function ColorBar() {
   return (
     <Flex>
       {colors.map((color) => (
-        <Box key={color} style={{ backgroundColor: `var(--${color})` }} height="2" width="6" />
+        <Box key={color} style={{ backgroundColor: `var(--${color})` }} height="1" width="100%" />
       ))}
     </Flex>
   );
