@@ -26,7 +26,7 @@ export default function Window({ density, onDensityChange }: WindowProps) {
 
   return (
     <Flex direction="column" gap="4" width="100%">
-      <Flex pt={{initial: '4', md: '6'}} align="center" justify="between">
+      <Flex pt={{ initial: "4", md: "6" }} align="center" justify="between">
         <Flex className="cursor-crosshair" direction="column">
           <Tooltip content="Pronounced 'vote'" side="right">
             <Text size="3" weight="bold">
@@ -42,7 +42,7 @@ export default function Window({ density, onDensityChange }: WindowProps) {
             Design Engineer
           </Text>
         </Flex>
-        <Flex display={{initial: 'none', lg: 'flex'}}>
+        <Flex display={{ initial: "none", lg: "flex" }}>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
               <IconButton variant="surface" highContrast>
@@ -65,7 +65,7 @@ export default function Window({ density, onDensityChange }: WindowProps) {
         </Flex>
       </Flex>
       <Box>
-      <Spline scene="https://prod.spline.design/ozb1e9hCLqo73g6G/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/ozb1e9hCLqo73g6G/scene.splinecode" />
       </Box>
     </Flex>
   );
