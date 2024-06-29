@@ -1,12 +1,6 @@
-"use client";
-import { Fragment, useRef, ReactNode } from "react";
-import {
-  MotionValue,
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+'use client';
+import { Fragment, useRef, ReactNode } from 'react';
+import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   BackpackIcon,
   EnvelopeClosedIcon,
@@ -15,13 +9,11 @@ import {
   ReaderIcon,
   SpeakerOffIcon,
   TwitterLogoIcon,
-} from "@radix-ui/react-icons";
-import { Avatar, Flex, IconButton, Separator, Tooltip } from "@radix-ui/themes";
-import Link from "next/link";
+} from '@radix-ui/react-icons';
+import { Avatar, Flex, IconButton, Separator, Tooltip } from '@radix-ui/themes';
+import Link from 'next/link';
 
-type NavLinkAction =
-  | { type: "button"; onClick: () => void }
-  | { type: "link"; href: string };
+type NavLinkAction = { type: 'button'; onClick: () => void } | { type: 'link'; href: string };
 
 interface NavLinkProps {
   name: string;
@@ -35,62 +27,59 @@ export default function NavToolbar() {
 
   const linkGroups = [
     [
+      // {
+      //   name: "Craft",
+      //   icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
+      //   action: { type: "link", href: "/craft" },
+      // },
       {
-        name: "Craft",
-        icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "/craft" },
-      },
-      {
-        name: "Blog",
-        icon: <ReaderIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "/blog" },
-      },
-    ],
-    [
-      {
-        name: "Contact",
-        icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "/contact" },
-      },
-      {
-        name: "Figma",
-        icon: <FigmaLogoIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "https://figma.com/@vogtbot9000" },
-      },
-      {
-        name: "X",
-        icon: <TwitterLogoIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "https://www.x.com/vogtbot" },
+        name: 'Blog',
+        icon: <ReaderIcon style={{ color: 'var(--accent-a11)' }} />,
+        action: { type: 'link', href: '/blog' },
       },
     ],
     [
+      // {
+      //   name: "Contact",
+      //   icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
+      //   action: { type: "link", href: "/contact" },
+      // },
       {
-        name: "Toggle theme",
-        icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "/" },
+        name: 'Figma',
+        icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)' }} />,
+        action: { type: 'link', href: 'https://figma.com/@vogtbot9000' },
       },
       {
-        name: "Toggle sound",
-        icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
-        action: { type: "link", href: "/" },
+        name: 'X',
+        icon: <TwitterLogoIcon style={{ color: 'var(--accent-a11)' }} />,
+        action: { type: 'link', href: 'https://www.x.com/vogtbot' },
       },
     ],
+    // [
+    //   {
+    //     name: "Toggle theme",
+    //     icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
+    //     action: { type: "link", href: "/" },
+    //   },
+    //   {
+    //     name: "Toggle sound",
+    //     icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
+    //     action: { type: "link", href: "/" },
+    //   },
+    // ],
   ];
 
   return (
-    <motion.div
-      onMouseMove={(e) => mouseX.set(e.pageX)}
-      onMouseLeave={() => mouseX.set(Infinity)}
-    >
+    <motion.div onMouseMove={(e) => mouseX.set(e.pageX)} onMouseLeave={() => mouseX.set(Infinity)}>
       <Flex
         className="h-16"
         justify="between"
         align="center"
         style={{
-          backgroundColor: "var(--gray-1)",
+          backgroundColor: 'var(--gray-1)',
           borderWidth: 1,
           borderColor: `var(--gray-8)`,
-          borderStyle: "solid",
+          borderStyle: 'solid',
           borderRadius: 9999,
         }}
         px="4"
@@ -107,12 +96,10 @@ export default function NavToolbar() {
                   key={linkIndex}
                   mouseX={mouseX}
                   icon={link.icon}
-                  action={link.action as { type: "link"; href: string }}
-                ></NavLink>
+                  action={link.action as { type: 'link'; href: string }}
+                />
               ))}
-              {groupIndex < linkGroups.length - 1 && (
-                <Separator size="2" orientation="vertical" />
-              )}
+              {groupIndex < linkGroups.length - 1 && <Separator size="2" orientation="vertical" />}
             </Fragment>
           ))}
         </Flex>
@@ -123,13 +110,13 @@ export default function NavToolbar() {
 
 function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
   const renderContent = () => {
-    if (action.type === "button") {
+    if (action.type === 'button') {
       return (
         <IconButton size="4" {...props}>
-          <span className="w-full h-full">{icon}</span>
+          <span className="w-24 h-24">{icon}</span>
         </IconButton>
       );
-    } else if (action.type === "link") {
+    } else if (action.type === 'link') {
       return (
         <Link className="before:absolute before:inset-0" href={action.href}>
           <div className="w-full h-full" {...props}>
@@ -165,7 +152,7 @@ function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
         ref={ref}
         style={{
           width,
-          borderColor: "var(--gold-a7)",
+          borderColor: 'var(--gold-a7)',
           borderWidth: 1,
         }}
       >

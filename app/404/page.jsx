@@ -1,4 +1,4 @@
-import { BoxFlex, Text } from "@radix-ui/themes";
+import { BoxFlex, Text } from '@radix-ui/themes';
 
 export default function Home() {
   return (

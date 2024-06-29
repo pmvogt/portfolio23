@@ -1,22 +1,15 @@
-import Spline from "@splinetool/react-spline";
+import Spline from '@splinetool/react-spline';
 
-import {
-  Box,
-  Flex,
-  Text,
-  DropdownMenu,
-  IconButton,
-  Tooltip,
-} from "@radix-ui/themes";
-import { CheckIcon, ColumnSpacingIcon } from "@radix-ui/react-icons";
+import { Box, Flex, Text, DropdownMenu, IconButton, Tooltip } from '@radix-ui/themes';
+import { CheckIcon, ColumnSpacingIcon } from '@radix-ui/react-icons';
 
 interface WindowProps {
-  density: "1" | "2" | "3" | "4";
-  onDensityChange: (newDensity: "1" | "2" | "3" | "4") => void;
+  density: '1' | '2' | '3' | '4';
+  onDensityChange: (newDensity: '1' | '2' | '3' | '4') => void;
 }
 
 export default function Window({ density, onDensityChange }: WindowProps) {
-  const handleDensityChange = (newDensity: "1" | "2" | "3" | "4") => {
+  const handleDensityChange = (newDensity: '1' | '2' | '3' | '4') => {
     onDensityChange(newDensity);
   };
 
@@ -26,7 +19,7 @@ export default function Window({ density, onDensityChange }: WindowProps) {
 
   return (
     <Flex direction="column" gap="4" width="100%">
-      <Flex pt={{ initial: "4", md: "6" }} align="center" justify="between">
+      <Flex pt={{ initial: '4', md: '6' }} align="center" justify="between">
         <Flex className="cursor-crosshair" direction="column">
           <Tooltip content="Pronounced 'vote'" side="right">
             <Text size="3" weight="bold">
@@ -35,14 +28,14 @@ export default function Window({ density, onDensityChange }: WindowProps) {
           </Tooltip>
           <Text
             style={{
-              color: "var(--gray-10)",
+              color: 'var(--gray-10)',
             }}
             size="2"
           >
             Design Engineer
           </Text>
         </Flex>
-        <Flex display={{ initial: "none", lg: "flex" }}>
+        <Flex display={{ initial: 'none', lg: 'flex' }}>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
               <IconButton variant="surface" highContrast>
@@ -51,14 +44,14 @@ export default function Window({ density, onDensityChange }: WindowProps) {
             </DropdownMenu.Trigger>
             <DropdownMenu.Content size="1">
               <DropdownMenu.Label>Layout Density</DropdownMenu.Label>
-              <DropdownMenu.Item onSelect={() => handleDensityChange("1")}>
-                Compact {density === "1" && <Checkmark />}
+              <DropdownMenu.Item onSelect={() => handleDensityChange('1')}>
+                Compact {density === '1' && <Checkmark />}
               </DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleDensityChange("2")}>
-                High {density === "2" && <Checkmark />}
+              <DropdownMenu.Item onSelect={() => handleDensityChange('2')}>
+                High {density === '2' && <Checkmark />}
               </DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleDensityChange("3")}>
-                Low {density === "3" && <Checkmark />}
+              <DropdownMenu.Item onSelect={() => handleDensityChange('3')}>
+                Low {density === '3' && <Checkmark />}
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
