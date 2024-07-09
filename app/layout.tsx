@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono';
 
 import './globals.css';
 import '@radix-ui/themes/styles.css';
+import ThemeProvider from './components/themeprovider';
 
 export const metadata: Metadata = {
   title: 'Peter Vogt - Software Designer, Design Engineer',
@@ -23,16 +24,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
         />
+        <link
+          rel="preload"
+          href="/fonts/geist-sans.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
-        <Theme accentColor="bronze" grayColor="mauve" scaling="100%" appearance="dark">
-          <main className="font-sans">
-            {children}
-            <div className="flex flex-col justify-center bottom-4 items-center overflow-hidden fixed w-full">
-              <div className="mx-auto w-full max-w-fit">{/* <NavToolbar /> */}</div>
-            </div>
-          </main>
-        </Theme>
+        <ThemeProvider>
+          <Theme accentColor="bronze" grayColor="mauve" scaling="100%">
+            <main className="font-sans min-h-screen">
+              {children}
+              <div className="fixed bottom-4 w-full flex justify-center items-center overflow-hidden">
+                <div className="mx-auto w-full max-w-fit">{/* <NavToolbar /> */}</div>
+              </div>
+            </main>
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
