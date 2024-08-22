@@ -1,21 +1,6 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Text,
-  DropdownMenu,
-  IconButton,
-  Separator,
-  Tooltip,
-} from '@radix-ui/themes';
+import { Box, Button, Flex, Text, DropdownMenu, Separator, Tooltip } from '@radix-ui/themes';
 
-import {
-  CheckIcon,
-  ColumnSpacingIcon,
-  FigmaLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-} from '@radix-ui/react-icons';
+import { CheckIcon, ColumnSpacingIcon } from '@radix-ui/react-icons';
 
 import Spline from '@splinetool/react-spline';
 
@@ -50,25 +35,10 @@ export default function Window({ density, onDensityChange }: WindowProps) {
             }}
             size="2"
           >
-            Design Engineer
+            Software Designer & Developer
           </Text>
         </Flex>
         <Flex align="center" gap="2">
-          <IconButton size="2" variant="surface">
-            <a href="https://x.com/vogtbot" target="_blank" rel="noopener noreferrer">
-              <TwitterLogoIcon />
-            </a>
-          </IconButton>
-          <IconButton size="2" variant="surface">
-            <a href="https://figma.com/@vogtbot9000" target="_blank" rel="noopener noreferrer">
-              <FigmaLogoIcon />
-            </a>
-          </IconButton>
-          <IconButton size="2" variant="surface">
-            <a href="https://linkedin.com/in/vogtbot" target="_blank" rel="noopener noreferrer">
-              <LinkedInLogoIcon />
-            </a>
-          </IconButton>
           <Box height="100%" display={{ initial: 'none', lg: 'block' }}>
             <Separator orientation="vertical" size="2" color="bronze" />
           </Box>

@@ -35,12 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <Theme accentColor="bronze" grayColor="mauve" scaling="100%">
-            <main className="font-sans min-h-screen">
-              {children}
-              <div className="fixed bottom-4 w-full flex justify-center items-center overflow-hidden">
-                <div className="mx-auto w-full max-w-fit">{/* <NavToolbar /> */}</div>
-              </div>
-            </main>
+            <main className="font-sans min-h-screen">{children}</main>
           </Theme>
         </ThemeProvider>
       </body>

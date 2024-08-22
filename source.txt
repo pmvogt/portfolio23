@@ -1,0 +1,585 @@
+Project Path: /home/vogtbot/dev-projects/portfolio23/app
+
+Source Tree:
+
+```
+app
+├── favicon.ico
+├── components
+│   ├── colorbar.tsx
+│   ├── themeprovider.tsx
+│   ├── resume.jsx
+│   ├── window.tsx
+│   ├── navtoolbar.tsx
+│   └── homecontent.tsx
+├── globals.css
+├── 404
+│   └── page.tsx
+├── layout.tsx
+└── page.tsx
+
+```
+
+`/home/vogtbot/dev-projects/portfolio23/app/components/colorbar.tsx`:
+
+```````tsx
+'use client';
+
+import { Box, Flex } from '@radix-ui/themes';
+
+const colors = ['gray-5', 'gray-6', 'gray-7', 'accent-7', 'accent-8', 'accent-9'];
+
+export default function ColorBar() {
+  return (
+    <Flex>
+      {colors.map((color) => (
+        <Box key={color} style={{ backgroundColor: `var(--${color})` }} height="1" width="100%" />
+      ))}
+    </Flex>
+  );
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/components/themeprovider.tsx`:
+
+```````tsx
+'use client';
+
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ReactNode } from 'react';
+
+export default function ThemeProvider({ children }: { children: ReactNode }) {
+  return <NextThemesProvider attribute="class">{children}</NextThemesProvider>;
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/components/resume.jsx`:
+
+```````jsx
+import React from 'react';
+import { Box, Flex, Text, Separator } from '@radix-ui/themes';
+
+const JobEntry = ({ company, positions }) => (
+  <>
+    <Flex mt="4" justify="between" width="100%">
+      <Text as="p" size="2">
+        {company}
+      </Text>
+    </Flex>
+    {positions.map(({ title, period }, index) => (
+      <Flex key={index} justify="between" mt={index === 0 ? '1' : '1'}>
+        <Text as="p" size="2" style={{ color: 'var(--mauve-a11)' }}>
+          {title}
+        </Text>
+        <Text as="p" size="2" style={{ color: 'var(--mauve-a11)' }}>
+          {period}
+        </Text>
+      </Flex>
+    ))}
+    <Separator size="4" my="3" color="bronze" />
+  </>
+);
+
+const Resume = () => {
+  const jobs = [
+    {
+      company: 'USAA',
+      positions: [
+        { title: 'Lead Designer, Design Systems', period: '2022-2023' },
+        { title: 'Sr Designer, Design Technologist', period: '2019-2022' },
+      ],
+    },
+    {
+      company: 'Stellar Elements',
+      positions: [{ title: 'Design Technologist', period: '2017-2019' }],
+    },
+    {
+      company: 'Lightcast',
+      positions: [{ title: 'Product Designer', period: '2016-2017' }],
+    },
+    {
+      company: 'Pigeonly (YC W15)',
+      positions: [{ title: 'Sr Designer', period: '2015-2016' }],
+    },
+    {
+      company: 'Munzee',
+      positions: [{ title: 'Designer', period: '2014-2015' }],
+    },
+    {
+      company: 'Mark Cuban Companies',
+      positions: [{ title: 'Designer', period: '2012-2014' }],
+    },
+  ];
+
+  return (
+    <Box>
+      {jobs.map((job, index) => (
+        <JobEntry key={index} {...job} />
+      ))}
+    </Box>
+  );
+};
+
+export default Resume;
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/components/window.tsx`:
+
+```````tsx
+import {
+  Box,
+  Button,
+  Flex,
+  Text,
+  DropdownMenu,
+  IconButton,
+  Separator,
+  Tooltip,
+} from '@radix-ui/themes';
+
+import {
+  CheckIcon,
+  ColumnSpacingIcon,
+  FigmaLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+} from '@radix-ui/react-icons';
+
+import Spline from '@splinetool/react-spline';
+
+interface WindowProps {
+  density: '1' | '2' | '3' | '4';
+  onDensityChange: (newDensity: '1' | '2' | '3' | '4') => void;
+}
+
+export default function Window({ density, onDensityChange }: WindowProps) {
+  const handleDensityChange = (newDensity: '1' | '2' | '3' | '4') => {
+    onDensityChange(newDensity);
+  };
+
+  const Checkmark = () => {
+    return <CheckIcon />;
+  };
+
+  return (
+    <Flex direction="column" gap="4" width="100%">
+      <Flex pt={{ initial: '4', md: '6' }} align="center" justify="between">
+        <Flex direction="column">
+          <Box className="cursor-crosshair">
+            <Tooltip content="Pronounced 'vote'">
+              <Text size="3" weight="bold">
+                Peter Vogt
+              </Text>
+            </Tooltip>
+          </Box>
+          <Text
+            style={{
+              color: 'var(--mauve-11)',
+            }}
+            size="2"
+          >
+            Design Engineer
+          </Text>
+        </Flex>
+        <Flex align="center" gap="2">
+          <IconButton size="2" variant="surface">
+            <a href="https://x.com/vogtbot" target="_blank" rel="noopener noreferrer">
+              <TwitterLogoIcon />
+            </a>
+          </IconButton>
+          <IconButton size="2" variant="surface">
+            <a href="https://figma.com/@vogtbot9000" target="_blank" rel="noopener noreferrer">
+              <FigmaLogoIcon />
+            </a>
+          </IconButton>
+          <IconButton size="2" variant="surface">
+            <a href="https://linkedin.com/in/vogtbot" target="_blank" rel="noopener noreferrer">
+              <LinkedInLogoIcon />
+            </a>
+          </IconButton>
+          <Box height="100%" display={{ initial: 'none', lg: 'block' }}>
+            <Separator orientation="vertical" size="2" color="bronze" />
+          </Box>
+          <Flex display={{ initial: 'none', lg: 'flex' }} gap="2">
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <Button variant="classic" color="bronze">
+                  <ColumnSpacingIcon /> Density
+                </Button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content size="1">
+                <DropdownMenu.Label>Layout Density</DropdownMenu.Label>
+                <DropdownMenu.Item onSelect={() => handleDensityChange('1')}>
+                  Compact {density === '1' && <Checkmark />}
+                </DropdownMenu.Item>
+                <DropdownMenu.Item onSelect={() => handleDensityChange('2')}>
+                  High {density === '2' && <Checkmark />}
+                </DropdownMenu.Item>
+                <DropdownMenu.Item onSelect={() => handleDensityChange('3')}>
+                  Low {density === '3' && <Checkmark />}
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </Flex>
+        </Flex>
+      </Flex>
+      <Separator size="4" color="bronze" />
+      <Box>
+        <Spline scene="https://prod.spline.design/ozb1e9hCLqo73g6G/scene.splinecode" />
+      </Box>
+    </Flex>
+  );
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/components/navtoolbar.tsx`:
+
+```````tsx
+'use client';
+import { Fragment, useRef, ReactNode } from 'react';
+import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { FigmaLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import { Avatar, Flex, IconButton, Tooltip } from '@radix-ui/themes';
+import Link from 'next/link';
+
+type NavLinkAction = { type: 'button'; onClick: () => void } | { type: 'link'; href: string };
+
+interface NavLinkProps {
+  name: string;
+  action: NavLinkAction;
+  icon?: ReactNode;
+  mouseX: MotionValue<number>;
+}
+
+export default function NavToolbar() {
+  const mouseX = useMotionValue(Infinity);
+
+  const linkGroups = [
+    [
+      // {
+      //   name: "Craft",
+      //   icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
+      //   action: { type: "link", href: "/craft" },
+      // },
+      // {
+      //   name: 'Blog',
+      //   icon: <ReaderIcon style={{ color: 'var(--accent-a11)' }} />,
+      //   action: { type: 'link', href: '/blog' },
+      // },
+    ],
+    [
+      // {
+      //   name: "Contact",
+      //   icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
+      //   action: { type: "link", href: "/contact" },
+      // },
+      {
+        name: 'Figma',
+        icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)' }} />,
+        action: { type: 'link', href: 'https://figma.com/@vogtbot9000' },
+      },
+      {
+        name: 'X',
+        icon: <TwitterLogoIcon style={{ color: 'var(--accent-a11)' }} />,
+        action: { type: 'link', href: 'https://www.x.com/vogtbot' },
+      },
+    ],
+    // [
+    //   {
+    //     name: "Toggle theme",
+    //     icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
+    //     action: { type: "link", href: "/" },
+    //   },
+    //   {
+    //     name: "Toggle sound",
+    //     icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
+    //     action: { type: "link", href: "/" },
+    //   },
+    // ],
+  ];
+
+  return (
+    <motion.div onMouseMove={(e) => mouseX.set(e.pageX)} onMouseLeave={() => mouseX.set(Infinity)}>
+      <Flex
+        className="h-16"
+        justify="between"
+        align="center"
+        gap="3"
+        style={{
+          backgroundColor: 'var(--gray-1)',
+          borderWidth: 1,
+          borderColor: `var(--gray-8)`,
+          borderStyle: 'solid',
+          borderRadius: 9999,
+        }}
+        px="4"
+      >
+        <Flex>
+          <Avatar size="2" fallback="pv" radius="full" src="/yo.png" />
+        </Flex>
+        <Flex gap="3" align="center">
+          {linkGroups.map((group, groupIndex) => (
+            <Fragment key={groupIndex}>
+              {group.map((link, linkIndex) => (
+                <NavLink
+                  name={link.name}
+                  key={linkIndex}
+                  mouseX={mouseX}
+                  icon={link.icon}
+                  action={link.action as { type: 'link'; href: string }}
+                />
+              ))}
+              {/* TODO: bring this back when blog, etc are done */}
+              {/* {groupIndex < linkGroups.length - 1 && <Separator size="2" orientation="vertical" />} */}
+            </Fragment>
+          ))}
+        </Flex>
+      </Flex>
+    </motion.div>
+  );
+}
+
+function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
+  const renderContent = () => {
+    if (action.type === 'button') {
+      return (
+        <IconButton size="4" {...props}>
+          <span className="w-24 h-24">{icon}</span>
+        </IconButton>
+      );
+    } else if (action.type === 'link') {
+      return (
+        <Link className="before:absolute before:inset-0" href={action.href}>
+          <div className="w-full h-full" {...props}>
+            {icon}
+          </div>
+        </Link>
+      );
+    }
+  };
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? {
+      x: 0,
+      width: 0,
+    };
+    return Math.abs(val - (bounds.x + bounds.width / 2)); // Use absolute value for distance
+  });
+
+  const widthSync = useTransform(distance, [-80, 0, 80], [40, 60, 30]);
+
+  const width = useSpring(widthSync, {
+    mass: 0.1,
+    stiffness: 200,
+    damping: 10,
+  });
+
+  return (
+    <Tooltip content={name}>
+      <motion.div
+        className="aspect-square relative flex-col flex items-center justify-center rounded-full"
+        ref={ref}
+        style={{
+          width,
+          borderColor: 'var(--gold-a7)',
+          borderWidth: 1,
+        }}
+      >
+        {renderContent()}
+      </motion.div>
+    </Tooltip>
+  );
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/components/homecontent.tsx`:
+
+```````tsx
+'use client';
+import { useState } from 'react';
+import { Code, Container, Flex, Text } from '@radix-ui/themes';
+import Window from '../components/window';
+import ColorBar from '../components/colorbar';
+import Resume from './resume';
+
+export default function HomeContent() {
+  const [density, setDensity] = useState<'1' | '2' | '3' | '4'>('1');
+
+  return (
+    <Container
+      size={density}
+      style={{
+        height: '100%',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        WebkitOverflowScrolling: 'touch',
+        width: '100%',
+        maxWidth: '100vw',
+      }}
+    >
+      <Flex direction="column" gap="4" width="100%" pb="4">
+        <Window density={density} onDensityChange={setDensity} />
+        <Text
+          size="2"
+          style={{
+            color: 'var(--mauve-a11)',
+          }}
+        >
+          Designer that loves to <Code>code</Code>. Proven results working on scaled design systems
+          for hundreds of software teams. Standing on business since 1987.
+        </Text>
+
+        <Text
+          size="2"
+          style={{
+            color: 'var(--mauve-a11)',
+          }}
+        >
+          Currently: Design Engineer Lead @ CapitalOne, FS Design System
+        </Text>
+        <ColorBar />
+      </Flex>
+      <Resume />
+    </Container>
+  );
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/globals.css`:
+
+```````css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+#__next {
+  height: 100%;
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/404/page.tsx`:
+
+```````tsx
+import { Text } from '@radix-ui/themes';
+
+export default function Home() {
+  return (
+    <div className="mx-auto my-auto flex flex-col items-center">
+      <Text size="9" mb="4">
+        404
+      </Text>
+      <Text size="3">Go back now, ya hear?</Text>
+    </div>
+  );
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/layout.tsx`:
+
+```````tsx
+import type { Metadata } from 'next';
+import { Theme } from '@radix-ui/themes';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+
+import './globals.css';
+import '@radix-ui/themes/styles.css';
+import ThemeProvider from './components/themeprovider';
+
+export const metadata: Metadata = {
+  title: 'Peter Vogt - Software Designer, Design Engineer',
+  description: "Peter Vogt's personal site.",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+        />
+        <link
+          rel="preload"
+          href="/fonts/geist-sans.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body>
+        <ThemeProvider>
+          <Theme accentColor="bronze" grayColor="mauve" scaling="100%">
+            <main className="font-sans min-h-screen">
+              {children}
+              <div className="fixed bottom-4 w-full flex justify-center items-center overflow-hidden">
+                <div className="mx-auto w-full max-w-fit">{/* <NavToolbar /> */}</div>
+              </div>
+            </main>
+          </Theme>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+
+```````
+
+`/home/vogtbot/dev-projects/portfolio23/app/page.tsx`:
+
+```````tsx
+import { Flex } from '@radix-ui/themes';
+import HomeContent from './components/homecontent';
+
+export default function Home() {
+  return (
+    <Flex
+      height="100%"
+      width="100%"
+      px={{ initial: '2', md: '4' }}
+      style={{ minHeight: '100vh', maxWidth: '100vw' }}
+    >
+      <HomeContent />
+    </Flex>
+  );
+}
+
+```````

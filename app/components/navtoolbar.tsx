@@ -1,7 +1,12 @@
 'use client';
 import { Fragment, useRef, ReactNode } from 'react';
 import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FigmaLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import {
+  FigmaLogoIcon,
+  TwitterLogoIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from '@radix-ui/react-icons';
 import { Avatar, Flex, IconButton, Tooltip } from '@radix-ui/themes';
 import Link from 'next/link';
 
@@ -38,13 +43,23 @@ export default function NavToolbar() {
       // },
       {
         name: 'Figma',
-        icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)' }} />,
+        icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
         action: { type: 'link', href: 'https://figma.com/@vogtbot9000' },
       },
       {
         name: 'X',
-        icon: <TwitterLogoIcon style={{ color: 'var(--accent-a11)' }} />,
+        icon: <TwitterLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
         action: { type: 'link', href: 'https://www.x.com/vogtbot' },
+      },
+      {
+        name: 'GitHub',
+        icon: <GitHubLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
+        action: { type: 'link', href: 'https://github.com/pmvogt' },
+      },
+      {
+        name: 'LinkedIn',
+        icon: <LinkedInLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
+        action: { type: 'link', href: 'https://www.linkedin.com/in/vogtbot/' },
       },
     ],
     // [
@@ -131,7 +146,7 @@ function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
     return Math.abs(val - (bounds.x + bounds.width / 2)); // Use absolute value for distance
   });
 
-  const widthSync = useTransform(distance, [-80, 0, 80], [40, 60, 30]);
+  const widthSync = useTransform(distance, [-100, 0, 100], [50, 70, 40]);
 
   const width = useSpring(widthSync, {
     mass: 0.1,

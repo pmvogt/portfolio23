@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { Code, Container, Flex, Text } from '@radix-ui/themes';
+import { Container, Flex, Text } from '@radix-ui/themes';
 import Window from '../components/window';
 import ColorBar from '../components/colorbar';
-import Resume from './resume';
+import PositionedNavToolbar from '../components/positionednavtoolbar';
 
 export default function HomeContent() {
   const [density, setDensity] = useState<'1' | '2' | '3' | '4'>('1');
@@ -28,21 +28,12 @@ export default function HomeContent() {
             color: 'var(--mauve-a11)',
           }}
         >
-          Designer that loves to <Code>code</Code>. Proven results working on scaled design systems
-          for hundreds of software teams. Standing on business since 1987.
-        </Text>
-
-        <Text
-          size="2"
-          style={{
-            color: 'var(--mauve-a11)',
-          }}
-        >
-          Currently: Design Engineer Lead @ CapitalOne, FS Design System
+          Currently working on various projects around American Dynamism and re-industrialization.
+          If you are in this space, drop a line!
         </Text>
         <ColorBar />
+        <PositionedNavToolbar />
       </Flex>
-      <Resume />
     </Container>
   );
 }
