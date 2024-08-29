@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ThemeProvider>
-          <Theme accentColor="bronze" grayColor="mauve" scaling="100%">
+          <Theme accentColor="bronze" grayColor="sand" scaling="100%">
             <main className="font-sans min-h-screen">{children}</main>
           </Theme>
         </ThemeProvider>

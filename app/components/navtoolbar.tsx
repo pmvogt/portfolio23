@@ -1,13 +1,14 @@
 'use client';
-import { Fragment, useRef, ReactNode } from 'react';
+import { useRef, ReactNode } from 'react';
 import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   FigmaLogoIcon,
   TwitterLogoIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
+  DropdownMenuIcon,
 } from '@radix-ui/react-icons';
-import { Avatar, Flex, IconButton, Tooltip } from '@radix-ui/themes';
+import { Flex, IconButton, Tooltip, Text, Button, DropdownMenu, Heading } from '@radix-ui/themes';
 import Link from 'next/link';
 
 type NavLinkAction = { type: 'button'; onClick: () => void } | { type: 'link'; href: string };
@@ -22,94 +23,88 @@ interface NavLinkProps {
 export default function NavToolbar() {
   const mouseX = useMotionValue(Infinity);
 
-  const linkGroups = [
-    [
-      // {
-      //   name: "Craft",
-      //   icon: <BackpackIcon style={{ color: "var(--accent-a11)" }} />,
-      //   action: { type: "link", href: "/craft" },
-      // },
-      // {
-      //   name: 'Blog',
-      //   icon: <ReaderIcon style={{ color: 'var(--accent-a11)' }} />,
-      //   action: { type: 'link', href: '/blog' },
-      // },
-    ],
-    [
-      // {
-      //   name: "Contact",
-      //   icon: <EnvelopeClosedIcon style={{ color: "var(--accent-a11)" }} />,
-      //   action: { type: "link", href: "/contact" },
-      // },
-      {
-        name: 'Figma',
-        icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
-        action: { type: 'link', href: 'https://figma.com/@vogtbot9000' },
-      },
-      {
-        name: 'X',
-        icon: <TwitterLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
-        action: { type: 'link', href: 'https://www.x.com/vogtbot' },
-      },
-      {
-        name: 'GitHub',
-        icon: <GitHubLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
-        action: { type: 'link', href: 'https://github.com/pmvogt' },
-      },
-      {
-        name: 'LinkedIn',
-        icon: <LinkedInLogoIcon style={{ color: 'var(--accent-a11)', width: 24, height: 24 }} />,
-        action: { type: 'link', href: 'https://www.linkedin.com/in/vogtbot/' },
-      },
-    ],
-    // [
-    //   {
-    //     name: "Toggle theme",
-    //     icon: <MoonIcon style={{ color: "var(--accent-a11)" }} />,
-    //     action: { type: "link", href: "/" },
-    //   },
-    //   {
-    //     name: "Toggle sound",
-    //     icon: <SpeakerOffIcon style={{ color: "var(--accent-a11)" }} />,
-    //     action: { type: "link", href: "/" },
-    //   },
-    // ],
+  const textLinks = [{ name: 'AI Gallery', href: '/ai-gallery' }];
+
+  const socialLinks = [
+    {
+      name: 'Figma',
+      icon: <FigmaLogoIcon style={{ color: 'var(--accent-a11)', width: 16, height: 16 }} />,
+      action: { type: 'link', href: 'https://figma.com/@vogtbot9000' },
+    },
+    {
+      name: 'GitHub',
+      icon: <GitHubLogoIcon style={{ color: 'var(--accent-a11)', width: 16, height: 16 }} />,
+      action: { type: 'link', href: 'https://github.com/pmvogt' },
+    },
+    {
+      name: 'X',
+      icon: <TwitterLogoIcon style={{ color: 'var(--accent-a11)', width: 16, height: 16 }} />,
+      action: { type: 'link', href: 'https://www.x.com/vogtbot' },
+    },
+    {
+      name: 'LinkedIn',
+      icon: <LinkedInLogoIcon style={{ color: 'var(--accent-a11)', width: 16, height: 16 }} />,
+      action: { type: 'link', href: 'https://www.linkedin.com/in/vogtbot/' },
+    },
   ];
 
   return (
-    <motion.div onMouseMove={(e) => mouseX.set(e.pageX)} onMouseLeave={() => mouseX.set(Infinity)}>
+    <motion.div
+      className="w-full"
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+    >
       <Flex
-        className="h-16"
+        className="h-16 px-2"
         justify="between"
         align="center"
-        gap="3"
         style={{
-          backgroundColor: 'var(--gray-1)',
+          background: 'linear-gradient(.25turn, var(--bronze-a3) 10%, transparent)',
           borderWidth: 1,
           borderColor: `var(--gray-8)`,
           borderStyle: 'solid',
-          borderRadius: 9999,
         }}
-        px="4"
       >
-        <Flex>
-          <Avatar size="2" fallback="pv" radius="full" src="/yo.png" />
-        </Flex>
-        <Flex gap="3" align="center">
-          {linkGroups.map((group, groupIndex) => (
-            <Fragment key={groupIndex}>
-              {group.map((link, linkIndex) => (
-                <NavLink
-                  name={link.name}
-                  key={linkIndex}
-                  mouseX={mouseX}
-                  icon={link.icon}
-                  action={link.action as { type: 'link'; href: string }}
-                />
+        <Flex align="center" gap="3">
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+              <Button variant="surface">
+                <DropdownMenuIcon />
+              </Button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content>
+              {textLinks.map((link, index) => (
+                <DropdownMenu.Item key={index} asChild>
+                  <Link href={link.href}>{link.name}</Link>
+                </DropdownMenu.Item>
               ))}
-              {/* TODO: bring this back when blog, etc are done */}
-              {/* {groupIndex < linkGroups.length - 1 && <Separator size="2" orientation="vertical" />} */}
-            </Fragment>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+          <Flex direction="column" className="hidden sm:flex">
+            <Flex align="center" gap="1" className="cursor-crosshair">
+              <Tooltip content="Pronounced 'vote'">
+                <Heading size={{ initial: '1', md: '2' }} weight="bold">
+                  Peter Vogt 🇺🇸
+                </Heading>
+              </Tooltip>
+              {/* <Text style={{ color: 'var(--gray-8)' }} size="1">
+                (ピーター ボグト)
+              </Text> */}
+            </Flex>
+            <Text size={{ initial: '1', md: '2' }} weight="light">
+              Software Designer & Developer
+            </Text>
+          </Flex>
+        </Flex>
+        <Flex gap="2" align="center">
+          {socialLinks.map((link, index) => (
+            <NavLink
+              key={index}
+              name={link.name}
+              mouseX={mouseX}
+              icon={link.icon}
+              action={link.action as { type: 'link'; href: string }}
+            />
           ))}
         </Flex>
       </Flex>
@@ -122,7 +117,7 @@ function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
     if (action.type === 'button') {
       return (
         <IconButton size="4" {...props}>
-          <span className="w-24 h-24">{icon}</span>
+          <span className="cursor-pointer w-24 h-24">{icon}</span>
         </IconButton>
       );
     } else if (action.type === 'link') {
@@ -146,7 +141,7 @@ function NavLink({ name, icon, mouseX, action, ...props }: NavLinkProps) {
     return Math.abs(val - (bounds.x + bounds.width / 2)); // Use absolute value for distance
   });
 
-  const widthSync = useTransform(distance, [-100, 0, 100], [50, 70, 40]);
+  const widthSync = useTransform(distance, [-100, 0, 100], [50, 60, 40]);
 
   const width = useSpring(widthSync, {
     mass: 0.1,
