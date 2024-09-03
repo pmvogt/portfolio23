@@ -8,7 +8,16 @@ import {
   LinkedInLogoIcon,
   DropdownMenuIcon,
 } from '@radix-ui/react-icons';
-import { Flex, IconButton, Tooltip, Text, Button, DropdownMenu, Heading } from '@radix-ui/themes';
+import {
+  Flex,
+  IconButton,
+  Tooltip,
+  Text,
+  Button,
+  DropdownMenu,
+  Heading,
+  Container,
+} from '@radix-ui/themes';
 import Link from 'next/link';
 
 type NavLinkAction = { type: 'button'; onClick: () => void } | { type: 'link'; href: string };
@@ -54,60 +63,61 @@ export default function NavToolbar() {
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
     >
-      <Flex
-        className="h-16 px-2"
-        justify="between"
-        align="center"
-        style={{
-          background: 'linear-gradient(.25turn, var(--bronze-a3) 10%, transparent)',
-          borderWidth: 1,
-          borderColor: `var(--gray-8)`,
-          borderStyle: 'solid',
-        }}
-      >
-        <Flex align="center" gap="3">
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Button variant="surface">
-                <DropdownMenuIcon />
-              </Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              {textLinks.map((link, index) => (
-                <DropdownMenu.Item key={index} asChild>
-                  <Link href={link.href}>{link.name}</Link>
-                </DropdownMenu.Item>
-              ))}
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-          <Flex direction="column" className="hidden sm:flex">
-            <Flex align="center" gap="1" className="cursor-crosshair">
-              <Tooltip content="Pronounced 'vote'">
-                <Heading size={{ initial: '1', md: '2' }} weight="bold">
-                  Peter Vogt 🇺🇸
-                </Heading>
-              </Tooltip>
-              {/* <Text style={{ color: 'var(--gray-8)' }} size="1">
-                (ピーター ボグト)
-              </Text> */}
+      <Container>
+        <Flex
+          className="h-16 px-2"
+          justify="between"
+          align="center"
+          style={{
+            background: 'linear-gradient(.25turn, var(--bronze-a3) 10%, transparent)',
+            borderWidth: 1,
+            borderColor: `var(--gray-8)`,
+            borderStyle: 'solid',
+          }}
+        >
+          <Flex align="center" gap="3">
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <Button variant="surface">
+                  <DropdownMenuIcon />
+                </Button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                {textLinks.map((link, index) => (
+                  <DropdownMenu.Item key={index} asChild>
+                    <Link href={link.href}>{link.name}</Link>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+            <Flex direction="column" className="hidden sm:flex">
+              <Link href="/" className="cursor-pointer">
+                <Flex align="center" gap="1">
+                  <Tooltip content="Pronounced 'vote'">
+                    <Heading size={{ initial: '1', md: '2' }} weight="bold">
+                      Peter Vogt 🇺🇸
+                    </Heading>
+                  </Tooltip>
+                </Flex>
+              </Link>
+              <Text size={{ initial: '1', md: '2' }} weight="light">
+                Software Designer & Developer
+              </Text>
             </Flex>
-            <Text size={{ initial: '1', md: '2' }} weight="light">
-              Software Designer & Developer
-            </Text>
+          </Flex>
+          <Flex gap="2" align="center">
+            {socialLinks.map((link, index) => (
+              <NavLink
+                key={index}
+                name={link.name}
+                mouseX={mouseX}
+                icon={link.icon}
+                action={link.action as { type: 'link'; href: string }}
+              />
+            ))}
           </Flex>
         </Flex>
-        <Flex gap="2" align="center">
-          {socialLinks.map((link, index) => (
-            <NavLink
-              key={index}
-              name={link.name}
-              mouseX={mouseX}
-              icon={link.icon}
-              action={link.action as { type: 'link'; href: string }}
-            />
-          ))}
-        </Flex>
-      </Flex>
+      </Container>
     </motion.div>
   );
 }

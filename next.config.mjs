@@ -4,7 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'placehold.jp',
+        hostname: 'coaytnuq74jt62ad.public.blob.vercel-storage.com',
+        pathname: '/ai-pics/**',
       },
     ],
   },
