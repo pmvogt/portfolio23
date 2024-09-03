@@ -12,7 +12,18 @@ interface GalleryImage {
   printCmykUrl?: string;
 }
 
+// Add this function to check if we're in a build environment
+function isBuildTime() {
+  return process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV !== 'production';
+}
+
 async function getGalleryImages(): Promise<GalleryImage[]> {
+  // Check if we're in a build environment
+  if (isBuildTime()) {
+    console.log('Build time detected, returning empty array');
+    return [];
+  }
+
   const { blobs } = await list({ prefix: 'ai-pics/' });
   const imageMap = new Map<string, Partial<GalleryImage>>();
 
